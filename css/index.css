@@ -88,14 +88,14 @@
 	width:30px;
 	height:30px;
 	cursor:pointer;
-	background-image:url(Slides/arrowLeft.png);
+	background-image:url(/autopart/images/Slides/arrowLeft.png);
 	float:left;
 	position:relative;
 	z-index:5;
 }
 
 #left:hover{
-	background-image:url(Slides/arrowLeftSel.png);
+	background-image:url(/autopart/images/Slides/arrowLeftSel.png);
 }
 
 
@@ -103,14 +103,14 @@
 	width:30px;
 	height:30px;
 	cursor:pointer;
-	background-image:url(Slides/arrowRight.png);
+	background-image:url(/autopart/images/Slides/arrowRight.png);
 	float:right;
 	position:relative;
 	z-index:5;
 }
 
 #right:hover{
-	background-image:url(Slides/arrowRightSel.png);
+	background-image:url(/autopart/images/Slides/arrowRightSel.png);
 }
 
 #jumpers{

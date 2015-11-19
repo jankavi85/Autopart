@@ -1,5 +1,5 @@
 <head>
- <?php include 'header.php'; ?>
+
 <script type="text/javascript">
 function ValidateMobNumber(txtMobId) {
   var fld = document.getElementById(txtMobId);
@@ -29,10 +29,10 @@ function ValidateMobNumber(txtMobId) {
 
 #basic {
 	position:absolute;
-	left:159px;
-	top:152px;
-	width:351px;
-	height:234px;
+	left:428px;
+	top:142px;
+	width:403px;
+	height:283px;
 	z-index:3;
 	background-color: rgba(255,255,255,0.8);
 	border-radius:20px;
@@ -51,7 +51,7 @@ function ValidateMobNumber(txtMobId) {
 	font-weight: bold;
 	font-size: 24px;
 }
-</style>
+      </style>
 
 </head>
 <body>
@@ -69,7 +69,7 @@ function ValidateMobNumber(txtMobId) {
     <tr>
     <td width="20"></td>
   	<td >
-       <label for="username">User Name</label>
+       <label for="username">Username</label>
        </td>
        <td>
        <input type="text"  name="username" id="username" autocomplete="off" required/>

@@ -52,7 +52,7 @@
 	height:308px;
 	z-index:1;
 	color: #CCC;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(255,255,255,0.8);
 }
 #apDiv2 {
 	position:absolute;
@@ -152,6 +152,43 @@
 </div>
 
 </body>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+ if(isset($_POST["button"]) )
+  {
+	  include "database/dbconnect.php"; 
+	  $username = $_POST['textfield'];
+	 $password = $_POST['textfield2'];
+
+	$username = stripslashes($username);
+	$password = stripslashes($password);
+	$username = mysql_real_escape_string($username);
+	$password = mysql_real_escape_string($password);
+	$password = md5($password);
+
+
+	$sql="SELECT adminusername,password FROM systemadmin WHERE adminusername='$username' and password='$password'";
+	$result=$conn->query($sql);
+
+	echo $result->num_rows; 
+
+	if($result->num_rows==1)
+	{
+	session_start();
+	$_SESSION["username"] = $username;
+	header("location:home.php");
+	}
+	else
+	{
+	header("location:index.php");
+
+	}
+
+$conn->close();
+
+	  
+  }}
+?>
 
 
 

@@ -19,10 +19,10 @@ function nextSlide(){
 		var nextSlide=1;
 	}
 	
-	$("#slide_back img").attr("src","Slides/slide"+nextSlide+".png");
+	$("#slide_back img").attr("src","images/Slides/slide"+nextSlide+".png");
 	$("slide_front").stop(true,true);
 	$("#slide_front").animate({opacity:"0"},700,"linear",function(){
-		$("#slide_front img").attr("src","Slides/slide"+nextSlide+".png");
+		$("#slide_front img").attr("src","images/Slides/slide"+nextSlide+".png");
 		$("#slide_front").css("opacity","1");
 		$("#jumpers li.current").removeAttr("class");
 		$("#jumpers #"+nextSlide).attr("class","current");
@@ -41,10 +41,10 @@ function prevSlide(){
 		var nextSlide=current-1;
 	}
 	
-	$("#slide_back img").attr("src","Slides/slide"+nextSlide+".png");
+	$("#slide_back img").attr("src","images/Slides/slide"+nextSlide+".png");
 	$("slide_front").stop(true,true);
 	$("#slide_front").animate({opacity:"0"},700,"linear",function(){
-		$("#slide_front img").attr("src","Slides/slide"+nextSlide+".png");
+		$("#slide_front img").attr("src","images/Slides/slide"+nextSlide+".png");
 		$("#slide_front").css("opacity","1");
 		$("#jumpers li.current").removeAttr("class");
 		$("#jumpers #"+nextSlide).attr("class","current");
@@ -54,10 +54,10 @@ function prevSlide(){
 }
 
 function jump(slide){
-	$("#slide_back img").attr("src","Slides/slide"+slide+".png");
+	$("#slide_back img").attr("src","images/Slides/slide"+slide+".png");
 	$("slide_front").stop(true,true);
 	$("#slide_front").animate({opacity:"0"},700,"linear",function(){
-		$("#slide_front img").attr("src","Slides/slide"+slide+".png");
+		$("#slide_front img").attr("src","images/Slides/slide"+slide+".png");
 		$("#slide_front").css("opacity","1");
 		$("#jumpers li.current").removeAttr("class");
 		$("#jumpers #"+slide).attr("class","current");
@@ -72,9 +72,9 @@ $(document).ready(function(){
 
 
 function mouseOn(id){
-	document.getElementById(id).style.backgroundImage = "url(Index/FindButtonSel.png)";
+	document.getElementById(id).style.backgroundImage = "url(images/Index/FindButtonSel.png)";
 }
 	
 function mouseOut(id){
-	document.getElementById(id).style.backgroundImage = "url(Index/FindButton.png)";
+	document.getElementById(id).style.backgroundImage = "url(images/Index/FindButton.png)";
 }
