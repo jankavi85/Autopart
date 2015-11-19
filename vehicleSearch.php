@@ -1,5 +1,5 @@
 <?php
-	$db = new mysqli('localhost','root','','autopart');//set your database handler
+	$db = new mysqli('localhost','root','','autoparts');//set your database handler
 
 	$query = "SELECT DISTINCT year FROM vehicle";
   	$result = $db->query($query);
@@ -8,6 +8,7 @@
     	$years[] = $row['year'];
   	}
 	rsort($years);
+
 	$jsonYears=json_encode($years);
 ?>
 
@@ -16,17 +17,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<?php include "header.php" ?>
-<link rel="stylesheet" type="text/css" href="css/index.css">
-<script src="script/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script src="script/index.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<?php
 		echo "var years = $jsonYears; \n";
     ?>
 	
 	function loadYear(){
-		//alert("sfsgf");
+		
         var select = document.getElementById("year");
         //select.onchange = loadMadeBy;
         for(var i = 0; i < years.length; i++){
@@ -138,62 +135,88 @@
 
 <body onload="loadYear()">
 
-<section id="counter">1</section>
-
-<section id="slider_wrapper">
-	<div id ="slide_back"><img src="images/Slides/slide2.png" alt="slide1"/></div>
-  <div id ="slide_front"><img src="images/Slides/slide1.png" alt="slide1"/></div>
-  <div id="controls">
-   	<div id="arrow_wrapper">
-        	<div id="left" onclick="prevSlide()"></div>
-        	<div id="right" onclick="nextSlide()"></div>
-    </div>
+<h1 align="center">Search a part using Vehicle details</h1>
+<form id="form1" name="form1" method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
+<div id="apDiv2">
+  
+  Year :
+    <select id="year" name="year" onchange="loadMadeBy(this.value)">	
+      <option value="empty">--Select a Year--</option>
+    </select>
+    <br>
+    Made By :
+    <select id="madeBy" name="madeBy" onchange="loadModel(year.value,this.value)">
+    	<option value="empty">--Select a Made By--</option>
+    </select>
+    <br>
+    Model :
+    <select id="model" name="model" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
+    	<option value="empty">--Select a Model--</option>
+    </select>
+    <br>
+    Submodel :
+    <select id="submodel" name="submodel" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
+    	<option value="empty">--Select a Submodel--</option>	
+    </select>
+    <br>
+    Engine :
+    <select id="engine" name="engine" >
+    	<option value="empty">--Select a Engine--</option>
+    </select>
+  	<br>
+    <input type="submit" name="search" value="Search"/>
     
-<div id="jumpers">
-   	    <ul>
-           	  <li id="1" onclick="jump(1)" class="current"></li>
-              <li id="2" onclick="jump(2)" ></li>
-              <li id="3" onclick="jump(3)"></li>
-              <li id="4" onclick="jump(4)"></li>
-              <li id="5" onclick="jump(5)"></li>
-   	  </ul>
-    </div>
-  </div>
-</section>
-<div id="apDiv5"><img src="images/Index/findvehicle.png" width="355" height="300" />
-	
-  <form id="form1" name="form1" method="post" action="">
-  	<div id="apDiv7">
-    	<select id="year" name="year" class="select" onchange="loadMadeBy(this.value)">
-      		<option value="empty">--Select a Year--</option>
-    	</select>
-    </div>   
-    <div id="apDiv8">
-    	<select id="madeBy" name="madeBy" onchange="loadModel(year.value,this.value)">
-    		<option value="empty">--Select a Made By--</option>
-    	</select>
-    </div>
-    <div id="apDiv9">
-   	  	<select id="model" name="model" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
-    		<option value="empty">--Select a Model--</option>
-    	</select>
-    </div>
-    <div id="apDiv10">
-   	  	<select id="submodel" name="submodel" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
-    		<option value="empty">--Select a Submodel--</option>	
-    	</select>
-    </div>
-	<div id="apDiv11">
-   	  	<select id="engine" name="engine" >
-    		<option value="empty">--Select a Engine--</option>
-    	</select>
-    </div>
-	<div id="apDiv12">
-    	<input type="submit" id="findVehicle" value=""
-         onmouseover="mouseOn('findVehicle')" onmouseout="mouseOut('findVehicle')"
-   		 style="background-image:url(images/Index/findButton.png);background-color: Transparent;"/>
-    </div>
-  </form>
 </div>
+</form><P></P>
+<?php
+
+echo "<table>";
+echo "<tr> <th>partID</th> <th>sellerID</th> <th>vehicle ID</th>  <th>sub category</th> <th>Keyword</th> <th>Quantity</th><th>Description</th><th>New or Used</th><th>Price</th></tr>";
+
+$db = new mysqli('localhost','root','','autoparts');
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+   $year = $_GET["year"];
+   $madeBy = $_GET["madeBy"];
+   $model = $_GET["model"];
+   $submodel = $_GET["submodel"];
+   $engine = $_GET['engine'];
+   
+   //echo $subcategory.$engine ;
+   $query = "SELECT vehicleID FROM vehicle WHERE year=$year AND madeBy='$madeBy' AND model='$model' AND submodel='$submodel' AND engine='$engine'";
+   
+   $result = $db->query($query);
+   $row = $result->fetch_assoc();
+   $vehicleID =$row['vehicleID'];
+   
+   $query="SELECT * FROM part WHERE vehicleID=$vehicleID";
+   $result = $db->query($query);
+   
+   while($row = $result->fetch_assoc()){
+	echo "<tr><td>";
+	echo $row['partID'];
+	echo "</td><td>";
+	echo $row['sellerID'];
+	echo "</td><td>";
+	echo $row['vehicleID'];
+	echo "</td><td'>";
+	echo $row['subCategory'];
+	echo "</td><td>";
+	echo $row['keyword'];
+	echo "</td><td>";
+	echo $row['quantity'];
+	echo "</td><td>";
+	echo $row['description'];
+	echo "</td><td>";
+	echo $row['newOrUsed'];
+	echo "</td><td>";
+	echo $row['price'];
+	echo "</td></tr>";
+	}
+echo "</table>";
+}
+?>
+
+
 </body>
 </html>
