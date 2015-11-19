@@ -7,16 +7,7 @@
 <meta charset="UTF-8">
 <link href="css/header.css" rel="stylesheet">
 
-
-
-
 </head>
-<?php 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-
 <script>
 
 function Fun() {	
