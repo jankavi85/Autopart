@@ -3,7 +3,7 @@
 
 <head>
 
-<title>baas.lk</title>
+<title>Autopart.lk</title>
 <meta charset="UTF-8">
 <link href="css/header.css" rel="stylesheet">
 

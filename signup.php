@@ -1,5 +1,5 @@
 <head>
-<?php include "header.php" ?>
+ <?php include 'header.php'; ?>
 <script type="text/javascript">
 function ValidateMobNumber(txtMobId) {
   var fld = document.getElementById(txtMobId);
@@ -40,8 +40,8 @@ function ValidateMobNumber(txtMobId) {
 
 
 </style>
-<style>
- #coverPics{
+      <style>
+#coverPics{
 	width: 100%
 	top:0px;
 	background-image: url('images/2.jpg');
@@ -60,7 +60,7 @@ function ValidateMobNumber(txtMobId) {
 
   <div id="basic">
   
-    <form id="form1" name="form1" method="post" action="createprofile.php">
+    <form id="form1" name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
    
     <table>
     <tr>
@@ -84,7 +84,7 @@ function ValidateMobNumber(txtMobId) {
        <label for="Password">Password</label>
        </td>
        <td>
-       <input type="password"  name="Password" id="Password" autocomplete="off" required/>
+       <input type="password"  name="password" id="password" autocomplete="off" required/>
      	</td>
         </tr> 
         <tr><td></td></tr>
@@ -109,7 +109,7 @@ function ValidateMobNumber(txtMobId) {
        <label for="MobileNo">Mobile No</label>
      </td>
      <td>
-       <input type="text" name="Mobile" id="Mobile"  required/>
+       <input type="text" name="mobile" id="mobile"  required/>
     </td>
     </tr>
      <tr><td></td></tr>
@@ -127,10 +127,25 @@ function ValidateMobNumber(txtMobId) {
       <table>
       <tr></tr><tr></tr><tr></tr><tr><td width="200px"></td><td>
       
-      <input type="submit" name="next" id="saveContact" value="SUBMIT" /> </td></tr></table>
+      <input type="submit" name="signupbutton" id="signup" value="SUBMIT" /> </td></tr></table>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
     </form>
 
 
 </div>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+ if(isset($_POST["signupbutton"]) )
+  {
+	  include "database/dbconnect.php"; 
+	  $username=$_POST['username'];
+	  $password=$_POST['password'];
+	  $mobile=$_POST['mobile'];
+	  $email=$_POST['email'];
+	  $sql="INSERT INTO user(username,password,email,mobilenumber)VALUES('$username','$password','$mobile', '$email')";	
+	  $result = mysqli_query($conn, $sql);
+
+	  
+  }}
+?>

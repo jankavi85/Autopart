@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <?php include "header.php" ?>
-<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <style type="text/css">
 #apDiv5 {
 	position: absolute;
@@ -81,8 +81,8 @@
 }
 
 </style>
-<script src="jquery-2.1.4.min.js" type="text/javascript"></script>
-<script src="index.js" type="text/javascript"></script>
+<script src="script/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="script/index.js" type="text/javascript"></script>
 
 
 </head>
@@ -94,8 +94,8 @@
 <section id="counter">1</section>
 
 <section id="slider_wrapper">
-	<div id ="slide_back"><img src="Slides/slide2.png" alt="slide1"/></div>
-  <div id ="slide_front"><img src="Slides/slide1.png" alt="slide1"/></div>
+	<div id ="slide_back"><img src="images/Slides/slide2.png" alt="slide1"/></div>
+  <div id ="slide_front"><img src="images/Slides/slide1.png" alt="slide1"/></div>
   <div id="controls">
    	<div id="arrow_wrapper">
         	<div id="left" onclick="prevSlide()"></div>
@@ -113,7 +113,7 @@
     </div>
   </div>
 </section>
-<div id="apDiv5"><img src="Index/findvehicle.png" width="355" height="300" />
+<div id="apDiv5"><img src="images/Index/findvehicle.png" width="355" height="300" />
 	
   <form id="form1" name="form1" method="post" action="">
   	<div id="apDiv7">
@@ -159,7 +159,7 @@
 	<div id="apDiv12">
     	<input type="submit" id="findVehicle" value=""
          onmouseover="mouseOn('findVehicle')" onmouseout="mouseOut('findVehicle')"
-   		 style="background-image:url(index/findButton.png);background-color: Transparent;"/>
+   		 style="background-image:url(images/Index/findButton.png);background-color: Transparent;"/>
     </div>
   </form>
 </div>
