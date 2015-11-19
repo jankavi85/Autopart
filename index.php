@@ -34,12 +34,6 @@
 		}
     }
 	
-	
-	/*function onloadFunction(){
-		loadCategories();
-		loadYear();
-	}*/
-	
 	function loadMadeBy(year) {
 		//alert(id);
 		if (year == "empty") {
@@ -169,22 +163,22 @@
     	</select>
     </div>   
     <div id="apDiv8">
-    	<select id="madeBy" name="madeBy" onchange="loadModel(year.value,this.value)">
+    	<select id="madeBy" name="madeBy" class="select" onchange="loadModel(year.value,this.value)">
     		<option value="empty">--Select a Made By--</option>
     	</select>
     </div>
     <div id="apDiv9">
-   	  	<select id="model" name="model" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
+   	  	<select id="model" name="model" class="select" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
     		<option value="empty">--Select a Model--</option>
     	</select>
     </div>
     <div id="apDiv10">
-   	  	<select id="submodel" name="submodel" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
+   	  	<select id="submodel" name="submodel" class="select" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
     		<option value="empty">--Select a Submodel--</option>	
     	</select>
     </div>
 	<div id="apDiv11">
-   	  	<select id="engine" name="engine" >
+   	  	<select id="engine" class="select" name="engine" >
     		<option value="empty">--Select a Engine--</option>
     	</select>
     </div>

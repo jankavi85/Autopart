@@ -1,6 +1,6 @@
 <?php
-	$db = new mysqli('localhost','root','','autoparts');//set your database handler
-	
+	//$db = new mysqli('localhost','root','','autoparts');//set your database handler
+	include "database/dbconnect.php";
 	if($_GET['year']!= null){
 		
 		if($_GET['madeBy']!=null){
@@ -14,7 +14,7 @@
 					$model=$_GET['model'];
 					$submodel=$_GET['submodel'];
 					$query = "SELECT DISTINCT engine FROM vehicle WHERE year='".$year."' AND madeBy='".$madeBy."' AND model='".$model."' AND submodel='".$submodel."'";		
-					$result = $db->query($query);
+					$result = $conn->query($query);
 					
 					while($row = $result->fetch_assoc()){
 						$array[]=$row['engine'];
@@ -31,14 +31,14 @@
 				$madeBy=$_GET['madeBy'];
 				$model=$_GET['model'];
 				$query = "SELECT DISTINCT submodel FROM vehicle WHERE year='".$year."' AND madeBy='".$madeBy."' AND model='".$model."'";
-				$result = $db->query($query);
+				$result = $conn->query($query);
 				
 				while($row = $result->fetch_assoc()){
 					$array[]=$row['submodel'];
 				}
 				sort($array);
 				
-				echo "<option value='empty'>--Select a Model--</option>";
+				echo "<option value='empty'>--Select a Submodel--</option>";
 				foreach($array as $value){
 					echo "<option value=".$value.">".$value."</option>";
 				}}
@@ -47,7 +47,7 @@
 				$year=intval($_GET['year']);
 				$madeBy=$_GET['madeBy'];
 				$query = "SELECT DISTINCT model FROM vehicle WHERE year='".$year."' AND madeBy='".$madeBy."'";
-				$result = $db->query($query);
+				$result = $conn->query($query);
 				
 				while($row = $result->fetch_assoc()){
 					$model[]=$row['model'];
@@ -63,7 +63,7 @@
 		}else{
 			$year = intval($_GET['year']);
 			$query = "SELECT DISTINCT madeBy FROM vehicle WHERE year='".$year."'";
-			$result = $db->query($query);
+			$result = $conn->query($query);
 			
 			while($row = $result->fetch_assoc()){
 				$madeBy[]=$row['madeBy'];
