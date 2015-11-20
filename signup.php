@@ -4,16 +4,16 @@
 function ValidateMobNumber(txtMobId) {
   var fld = document.getElementById(txtMobId);
 
-  if (fld.value == "") {
-	   alert("please give phone number ");
-  return false;
- }
   if (isNaN(fld.value)) {
   alert("The phone number contains illegal characters.");
+  fld.value="";
+  fld.focus();
   return false;
  }
- else if (!(fld.value.length == 10)) {
+ else if (!(fld.value.length == 10 || fld.value.length == 0)) {
   alert("The phone number is the wrong length. \nPlease enter 10 digit mobile no.");
+  fld.value="";
+  fld.focus();
   return false;
  }
 
@@ -49,13 +49,20 @@ for(var i = 0; i < email.length; i++){
           if(email[i]==emailid.value)
 		  {
 			alert("Email already exist");
+			emailid.value="";
+			emailid.focus();
 			 return false;   
 		  }
 		
         }
+if(emailid.value!="")
+{
 if(atposition<1 || dotposition<atposition+2 || dotposition+2>=emailid.value.length){  
   alert("Please enter a valid e-mail address"); 
+  emailid.value="";
+  emailid.focus();
    return false;  
+}
 }
 
 }  
@@ -67,15 +74,13 @@ function usernamevalidate(username)
 	 <?php
 		echo "var username = $username; \n";
     ?>
-		if(usernameid.value=="")
-		{
-			alert("please give user name");
-			 return false;   
-		}
+		
         for(var i = 0; i < username.length; i++){
           if(username[i]==usernameid.value)
 		  {
 			alert("user name already exist");
+			usernameid.value="";
+			usernameid.focus();
 			 return false;   
 		  }
 		
@@ -90,13 +95,12 @@ function passwordvalid(password)
 {
 	
 	 var passwordid = document.getElementById(password);
-	      if(passwordid.value=="")
-		  {	  alert("please give your password");
-			  return false;
-		  }
-		  else if(passwordid.value.length<7)
+	     
+		  if(passwordid.value.length<7 && passwordid.value!="")
 		  {
 			alert("Give long password at least 7 characters");
+			passwordid.value="";
+			passwordid.focus();
 			return false;   
 		  }
 		
@@ -112,15 +116,12 @@ function confirmvalid()
 	
 	 var password=document.form1.password.value; 
      var repassword=document.form1.confirmPassword.value;
-	 if(repassword=="")
-	 {
-		 alert("you didn't confirm password"); 
-		 return false;
-	}
-	else if(repassword!=password)
+	
+	if(repassword!=password && repassword!="")
 	{
 		alert("Didn't match password"); 
 		document.form1.confirmPassword.value=""; 
+		document.form1.confirmPassword.focus();
 		return false;
 	}
 	 
