@@ -17,7 +17,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>autopart.lk</title>
+<<<<<<< HEAD
 
+=======
+<?php include "header.php" ?>
+>>>>>>> b09d5237de515c703011d997f973978cd46de29c
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <script src="script/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="script/index.js" type="text/javascript"></script>
@@ -195,12 +199,21 @@
     </div>
   </form>
 </div>
+<<<<<<< HEAD
 <div id="apDiv13"><img src="images/Index/frame.png" width="344" height="303" />
 	 <div id="apDiv14">
      	<input type="submit" id="sell" value="" 
         onmouseover="mouseOn('sell','aftersell')" onmouseout="mouseOut('sell','presell')" onclick="location.href = 'sell.php';"
         style="background-image:url(images/Index/presell.png);background-color: Transparent;"/>
   </div>
+=======
+<div id="apDiv13"><img src="images/Index/frame.png" width="344" height="300" />
+	 <div id="apDiv14">
+     	<input type="submit" id="sell" value="" 
+        onmouseover="mouseOn('sell','aftersell')" onmouseout="mouseOut('sell','presell')" 
+        style="background-image:url(images/Index/presell.png);background-color: Transparent;"/>
+     </div>
+>>>>>>> b09d5237de515c703011d997f973978cd46de29c
      
      <div id="apDiv15">
      	<img src="images/Index/search.png" width="280" height="50" />
