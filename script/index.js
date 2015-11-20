@@ -71,10 +71,10 @@ $(document).ready(function(){
 });
 
 
-function mouseOn(id){
-	document.getElementById(id).style.backgroundImage = "url(images/Index/FindButtonSel.png)";
+function mouseOn(id,name){
+	document.getElementById(id).style.backgroundImage = "url(images/Index/"+name+".png)";
 }
 	
-function mouseOut(id){
-	document.getElementById(id).style.backgroundImage = "url(images/Index/FindButton.png)";
+function mouseOut(id,name){
+	document.getElementById(id).style.backgroundImage = "url(images/Index/"+name+".png)";
 }

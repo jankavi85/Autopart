@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
  if(isset($_POST["button"]) )
   {
 	  include "database/dbconnect.php"; 
-	  $username = $_POST['textfield'];
+	 $username = $_POST['textfield'];
 	 $password = $_POST['textfield2'];
 
 	$username = stripslashes($username);
@@ -167,21 +167,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	$password = md5($password);
 
 
-	$sql="SELECT adminusername,password FROM systemadmin WHERE adminusername='$username' and password='$password'";
+	$sql="SELECT username,password,mobilenumber FROM user WHERE username='$username' and password='$password'";
 	$result=$conn->query($sql);
-
-	echo $result->num_rows; 
-
 	if($result->num_rows==1)
 	{
-	session_start();
-	$_SESSION["username"] = $username;
-	header("location:home.php");
+	  $rows = mysqli_fetch_assoc($result);
+	  session_start();
+	  $_SESSION['username'] = $rows['username'];
+	  $_SESSION['mobile'] = $rows['mobilenumber'];
+	  header("location:index.php");
 	}
 	else
 	{
-	header("location:index.php");
-
+	header("location:login.php");
 	}
 
 $conn->close();

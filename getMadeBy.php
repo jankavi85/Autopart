@@ -1,5 +1,6 @@
 <?php
-	include "database/dbconnect.php"; //set your database handler
+	//$conn = new mysqli('localhost','root','','autoparts');//set your database handler
+	include "database/dbconnect.php";
 	
 	if($_GET['year']!= null){
 		
@@ -38,7 +39,7 @@
 				}
 				sort($array);
 				
-				echo "<option value='empty'>--Select a Model--</option>";
+				echo "<option value='empty'>--Select a Submodel--</option>";
 				foreach($array as $value){
 					echo "<option value=".$value.">".$value."</option>";
 				}}

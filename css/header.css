@@ -114,7 +114,7 @@
 #logout{
 	position: fixed;
 	right:20px;
-	top: 75px;
+	top: 100px;
 	width: 65px;
 	height: 20px;
 	z-index: 5;
@@ -129,13 +129,16 @@
 	z-index: 2;	
 }
 
-#sinhala{
+#name{
 	position: absolute;
-	left: 900px;
-	top: 53px;
+	right: 80px;
+	top: 2px;
 	width: 40px;
 	height: 19px;
 	z-index: 3;	
+	font:"Arial Black", Gadget, sans-serif;
+	font-size:28px;
+	font-weight:bold;
 }
 
 #tamil{
@@ -267,8 +270,8 @@
 
 #apDivLogout{
 	position: absolute;
-	left: 1130px;
-	top: 15px;
+	right: 15px;
+	top: 35px;
 	width: 111px;
 	height: 36px;
 	z-index: 1;

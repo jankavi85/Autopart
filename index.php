@@ -1,6 +1,7 @@
+<?php include 'header.php';?>
 <?php
-	include "database/dbconnect.php";//set your database handler
-
+	//$db = new mysqli('localhost','root','','autopart');//set your database handler
+	include "database/dbconnect.php";
 	$query = "SELECT DISTINCT year FROM vehicle";
   	$result = $conn->query($query);
 	
@@ -15,8 +16,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<?php include "header.php" ?>
+<title>autopart.lk</title>
+
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <script src="script/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="script/index.js" type="text/javascript"></script>
@@ -26,24 +27,19 @@
     ?>
 	
 	function loadYear(){
-		//alert("sfsgf");
         var select = document.getElementById("year");
-        //select.onchange = loadMadeBy;
         for(var i = 0; i < years.length; i++){
           select.options[i+1] = new Option(years[i],years[i]);    
 		}
     }
 	
-	
-	/*function onloadFunction(){
-		loadCategories();
-		loadYear();
-	}*/
-	
 	function loadMadeBy(year) {
-		//alert(id);
+		
 		if (year == "empty") {
 			document.getElementById("madeBy").innerHTML = "<option value='empty'>--Select a Made By--</option>";
+			document.getElementById("model").innerHTML = "<option value='empty'>--Select a Model--</option>";
+			document.getElementById("submodel").innerHTML = "<option value='empty'>--Select a Submodel--</option>";
+			document.getElementById("engine").innerHTML = "<option value='empty'>--Select a Engine--</option>";
 			return;
 		} else { 
 			if (window.XMLHttpRequest) {
@@ -62,11 +58,14 @@
 			//xmlhttp.open("GET","getMadeBy.php?id="+id,true);
 			xmlhttp.send();
 		}
+		//alert("bninm");
 	}
 	
 	function loadModel(year,madeBy){
 		if (madeBy == "empty") {
 			document.getElementById("model").innerHTML = "<option value='empty'>--Select a Model--</option>";
+			document.getElementById("submodel").innerHTML = "<option value='empty'>--Select a Submodel--</option>";
+			document.getElementById("engine").innerHTML = "<option value='empty'>--Select a Engine--</option>";
 			return;
 		} else { 
 			if (window.XMLHttpRequest) {
@@ -90,6 +89,7 @@
 	function loadSubmodel(year,madeBy,model){
 		if (model == "empty") {
 			document.getElementById("submodel").innerHTML = "<option value='empty'>--Select a Submodel--</option>";
+			document.getElementById("engine").innerHTML = "<option value='empty'>--Select a Engine--</option>";
 			return;
 		} else { 
 			if (window.XMLHttpRequest) {
@@ -161,7 +161,7 @@
   </div>
 </section>
 <div id="apDiv5"><img src="images/Index/findvehicle.png" width="355" height="300" />
-	
+
   <form id="form1" name="form1" method="post" action="">
   	<div id="apDiv7">
     	<select id="year" name="year" class="select" onchange="loadMadeBy(this.value)">
@@ -169,31 +169,51 @@
     	</select>
     </div>   
     <div id="apDiv8">
-    	<select id="madeBy" name="madeBy" onchange="loadModel(year.value,this.value)">
+    	<select id="madeBy" name="madeBy" class="select" onchange="loadModel(year.value,this.value)">
     		<option value="empty">--Select a Made By--</option>
     	</select>
     </div>
     <div id="apDiv9">
-   	  	<select id="model" name="model" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
+   	  	<select id="model" name="model" class="select" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
     		<option value="empty">--Select a Model--</option>
     	</select>
     </div>
     <div id="apDiv10">
-   	  	<select id="submodel" name="submodel" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
+   	  	<select id="submodel" name="submodel" class="select" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
     		<option value="empty">--Select a Submodel--</option>	
     	</select>
     </div>
 	<div id="apDiv11">
-   	  	<select id="engine" name="engine" >
+   	  	<select id="engine" class="select" name="engine" >
     		<option value="empty">--Select a Engine--</option>
     	</select>
     </div>
 	<div id="apDiv12">
     	<input type="submit" id="findVehicle" value=""
-         onmouseover="mouseOn('findVehicle')" onmouseout="mouseOut('findVehicle')"
+         onmouseover="mouseOn('findVehicle','findButtonSel')" onmouseout="mouseOut('findVehicle','findButton')"
    		 style="background-image:url(images/Index/findButton.png);background-color: Transparent;"/>
     </div>
   </form>
+</div>
+<div id="apDiv13"><img src="images/Index/frame.png" width="344" height="303" />
+	 <div id="apDiv14">
+     	<input type="submit" id="sell" value="" 
+        onmouseover="mouseOn('sell','aftersell')" onmouseout="mouseOut('sell','presell')" onclick="location.href = 'sell.php';"
+        style="background-image:url(images/Index/presell.png);background-color: Transparent;"/>
+  </div>
+     
+     <div id="apDiv15">
+     	<img src="images/Index/search.png" width="280" height="50" />
+        <div id="apDiv17">
+        	<input type="text" name="search" id="searchtext" value="Ex:Air Filters/Bumpers"
+            onfocus="if(this.value == 'Ex:Air Filters/Bumpers') { this.value = ''; }" 
+      		onblur="if (this.value == '') {this.value = 'Ex:Air Filters/Bumpers'; }"/>
+        </div>
+     </div>
+     <div id="apDiv16"><input type="submit" id="search" value="" 
+        onmouseover="mouseOn('search','aftersearch')" onmouseout="mouseOut('search','presearch')"
+        style="background-image:url(images/Index/presearch.png);background-color: Transparent;"/>
+     </div>
 </div>
 </body>
 </html>

@@ -1,3 +1,10 @@
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -41,11 +48,12 @@ function Fun() {
 
 	<?php 		
 	if(isset($_SESSION['username']) ) { //Checking whether a user has logged in
+		$username=$_SESSION['username'];
+		$mobile=$_SESSION['mobile'];
+		
 		echo "
-			<div id=\"apDivProfPic\">
-			<img class=\"img-circle\"  src= '".$_SESSION['url']."' ></div>
-
-			<a href =\"includes/logout.php\"><div id=\"apDivLogout\">
+			<div id=\"name\">$username</div>
+			<a href =\"logout.php\"><div id=\"apDivLogout\">
 			<img src=\"images/lgout.png\" width=\"100\" height=\"35\" alt=\"logot\" /></div></a>";
 	}
 
@@ -72,14 +80,7 @@ function Fun() {
 	  		<li><a href="#">FORUM</a></li>
 			<li><a href="#">ABOUT Us</a></li>
 			<li><a href="#">CONTACT US</a></li>
-
-	  		<?php
-		  		if(isset($_SESSION['username']) ){
-		  			if( $_SESSION['Catagory']== "sp"){					
-			   		}
-
-				}
-			?>  
+ 
 		</ul>
 	</div>
 </div>

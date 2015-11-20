@@ -5,22 +5,127 @@ function ValidateMobNumber(txtMobId) {
   var fld = document.getElementById(txtMobId);
 
   if (fld.value == "") {
+	   alert("please give phone number ");
   return false;
  }
   if (isNaN(fld.value)) {
   alert("The phone number contains illegal characters.");
-  fld.value = "";
-  fld.focus();
   return false;
  }
  else if (!(fld.value.length == 10)) {
   alert("The phone number is the wrong length. \nPlease enter 10 digit mobile no.");
-  fld.value = "";
-  fld.focus();
   return false;
  }
 
 }
+</script>
+<?php
+include "database/dbconnect.php"; 
+$query = "SELECT username,email FROM user";
+  	$result = $conn->query($query);
+	$found=0;
+	while($row = $result->fetch_assoc()){
+		$found++;
+    	$userarray[] = $row['username'];
+		$emailarray[]=$row['email'];
+  	}
+	if($found!=0)
+	{
+	$username=json_encode($userarray);
+	$email=json_encode($emailarray);
+	}
+  ?> 
+<script>
+function validateform(emailid){  
+<?php
+		echo "var email = $email; \n";
+ ?>
+  
+var emailid = document.getElementById(emailid);
+var atposition=emailid.value.indexOf("@");  
+var dotposition=emailid.value.lastIndexOf("."); 
+
+for(var i = 0; i < email.length; i++){
+          if(email[i]==emailid.value)
+		  {
+			alert("Email already exist");
+			 return false;   
+		  }
+		
+        }
+if(atposition<1 || dotposition<atposition+2 || dotposition+2>=emailid.value.length){  
+  alert("Please enter a valid e-mail address"); 
+   return false;  
+}
+
+}  
+</script>
+<script>
+function usernamevalidate(username)
+{
+	 var usernameid = document.getElementById(username);
+	 <?php
+		echo "var username = $username; \n";
+    ?>
+		if(usernameid.value=="")
+		{
+			alert("please give user name");
+			 return false;   
+		}
+        for(var i = 0; i < username.length; i++){
+          if(username[i]==usernameid.value)
+		  {
+			alert("user name already exist");
+			 return false;   
+		  }
+		
+        }
+	
+}
+
+
+</script>
+<script>
+function passwordvalid(password)
+{
+	
+	 var passwordid = document.getElementById(password);
+	      if(passwordid.value=="")
+		  {	  alert("please give your password");
+			  return false;
+		  }
+		  else if(passwordid.value.length<7)
+		  {
+			alert("Give long password at least 7 characters");
+			return false;   
+		  }
+		
+        
+	
+}
+
+</script>
+
+<script>
+function confirmvalid()
+{
+	
+	 var password=document.form1.password.value; 
+     var repassword=document.form1.confirmPassword.value;
+	 if(repassword=="")
+	 {
+		 alert("you didn't confirm password"); 
+		 return false;
+	}
+	else if(repassword!=password)
+	{
+		alert("Didn't match password"); 
+		document.form1.confirmPassword.value=""; 
+		return false;
+	}
+	 
+}
+
 </script>
 
 
@@ -98,7 +203,7 @@ function ValidateMobNumber(txtMobId) {
        <label for="username">Username</label>
        </td>
        <td>
-       <input type="text"  name="username" id="username" autocomplete="off" required/>
+       <input type="text"  name="username" id="username" onBlur="return usernamevalidate('username')"autocomplete="off" required/>
      </td>
      </tr>
      
@@ -110,7 +215,7 @@ function ValidateMobNumber(txtMobId) {
        <label for="Password">Password</label>
        </td>
        <td>
-       <input type="password"  name="password" id="password" autocomplete="off" required/>
+       <input type="password"  name="password" id="password" onBlur="return passwordvalid('password')" autocomplete="off" required/>
      	</td>
         </tr> 
         <tr><td></td></tr>
@@ -121,7 +226,7 @@ function ValidateMobNumber(txtMobId) {
        <label for="confirmPassword">Confirm Password</label>
 	</td>
     <td>
-       <input type="password" name="confirmPassword" id="confirmPassword" autocomplete="off" required />
+       <input type="password" name="confirmPassword" id="confirmPassword" autocomplete="off" onBlur="return confirmvalid()" required />
      </td>
      </tr>
      </table>
@@ -146,14 +251,14 @@ function ValidateMobNumber(txtMobId) {
        <label for="email">Email Address</label>
        </td>
        <td>
-       <input type="text" name="email" id="email"   required/>
+       <input type="text" name="email" id="email"  onBlur="return validateform('email')" required/>
     </td>
     </tr>
 </table>
       <table>
       <tr></tr><tr></tr><tr></tr><tr><td width="200px" ></td><td>
       
-      <input type="submit" name="signupbutton" id="signup" value="SIGN UP" /> </td></tr></table>
+      <input type="submit" name="signupbutton" id="signup" value="SIGN UP"  /> </td></tr></table>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
     </form>
@@ -167,11 +272,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	  include "database/dbconnect.php"; 
 	  $username=$_POST['username'];
 	  $password=$_POST['password'];
+	  $password=md5($password);
 	  $mobile=$_POST['mobile'];
 	  $email=$_POST['email'];
-	  $sql="INSERT INTO user(username,password,email,mobilenumber)VALUES('$username','$password','$mobile', '$email')";	
+	  $sql="INSERT INTO user(username,password,email,mobilenumber)VALUES('$username','$password','$email','$mobile')";	
 	  $result = mysqli_query($conn, $sql);
-
+	 
+	  session_start();
+	  $_SESSION["username"] = $username;
+	  $_SESSION["mobile"] = $mobile;
+	  header("location:index.php");
 	  
   }}
 ?>

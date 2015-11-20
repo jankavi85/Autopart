@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2015 at 02:38 PM
+-- Generation Time: Nov 20, 2015 at 01:36 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -39,6 +39,99 @@ CREATE TABLE IF NOT EXISTS `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `subCategory` varchar(30) NOT NULL,
+  `category` varchar(30) NOT NULL,
+  PRIMARY KEY (`subCategory`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`subCategory`, `category`) VALUES
+('Air Filters', 'Performance'),
+('Air Intake Systems', 'Performance'),
+('Air Leveling Kit', 'Suspension'),
+('Alternators', 'Replacement'),
+('Ball Joints', 'Replacement'),
+('Bed Liners & Mats', 'Exterior'),
+('Bed Rails', 'Exterior'),
+('Body Lift Kit', 'Suspension'),
+('Brake Pads', 'Replacement'),
+('Brake Rotors', 'Replacement'),
+('Bug Deflectors', 'Exterior'),
+('Bumper Covers', 'Exterior'),
+('Bumpers', 'Replacement'),
+('Car Covers', 'Exterior'),
+('Carburetors', 'Performance'),
+('Cargo Carriers', 'Exterior'),
+('Catalytic Converters', 'Performance'),
+('Clutches', 'Performance'),
+('Coil Springs', 'Suspension'),
+('Control Arms', 'Replacement'),
+('Dash Covers', 'Interior'),
+('Exhaust Systems', 'Performance'),
+('Exhaust Tips', 'Performance'),
+('Fender Flares', 'Exterior'),
+('Fenders', 'Replacement'),
+('Floor Liners/Mats', 'Interior'),
+('Fuel Injection Kits', 'Performance'),
+('Fuel Injection Pump', 'Performance'),
+('Gas Tanks', 'Replacement'),
+('Grille Assemblies', 'Replacement'),
+('Grille Guards & Bull Bars', 'Exterior'),
+('Header Panel', 'Replacement'),
+('Headers', 'Performance'),
+('Headlight Assemblies', 'Replacement'),
+('Headlights', 'Exterior'),
+('Hitches', 'Exterior'),
+('Hood Scoops', 'Exterior'),
+('Hoods', 'Replacement'),
+('Hub Cap', 'Wheels & Tires'),
+('Ignition Coil & Wire Sets', 'Performance'),
+('Leaf Springs', 'Suspension'),
+('Leveling Kits', 'Suspension'),
+('Lowering Kits', 'Suspension'),
+('Lowering Springs', 'Suspension'),
+('Lug Nut', 'Wheels & Tires'),
+('Mass Air Flow Sensors', 'Performance'),
+('Mirrors', 'Exterior'),
+('Mud Guards', 'Exterior'),
+('Mufflers', 'Performance'),
+('Nerf Bars', 'Exterior'),
+('Oil Filters', 'Performance'),
+('Oxygen Sensors', 'Replacement'),
+('Power Programmers', 'Performance'),
+('Radiators', 'Replacement'),
+('Rocker Panel', 'Replacement'),
+('Running Boards', 'Exterior'),
+('Seat Covers', 'Interior'),
+('Shocks', 'Suspension'),
+('Spark Plugs', 'Replacement'),
+('Starters', 'Replacement'),
+('Suspension Lift Kit', 'Suspension'),
+('Sway Bar', 'Suspension'),
+('Sway Bar Bushing', 'Suspension'),
+('Sway Bar Kit', 'Suspension'),
+('Sway Bar Link Bushing', 'Suspension'),
+('Taillight Assemblies', 'Replacement'),
+('Taillights', 'Exterior'),
+('Throttle Body', 'Performance'),
+('Throttle Body Spacer', 'Performance'),
+('Tonneau Covers', 'Exterior'),
+('Wheel & Rims', 'Wheels & Tires'),
+('Wheel Bearings & Hubs', 'Wheels & Tires'),
+('Wheel Covers', 'Wheels & Tires'),
+('Wheel Hub', 'Wheels & Tires'),
+('Wheel Locks', 'Wheels & Tires');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `part`
 --
 
@@ -46,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `part` (
   `partID` int(11) NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
   `vehicleID` int(11) NOT NULL,
-  `category` varchar(50) NOT NULL,
+  `category` varchar(30) NOT NULL,
   `subCategory` varchar(50) NOT NULL,
   `quantity` int(11) NOT NULL,
   `description` varchar(100) NOT NULL,
@@ -54,8 +147,17 @@ CREATE TABLE IF NOT EXISTS `part` (
   `price` int(11) NOT NULL,
   PRIMARY KEY (`partID`),
   KEY `userID` (`userID`),
-  KEY `vehicleID` (`vehicleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `vehicleID` (`vehicleID`),
+  KEY `subCategory` (`subCategory`),
+  KEY `category` (`category`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `part`
+--
+
+INSERT INTO `part` (`partID`, `userID`, `vehicleID`, `category`, `subCategory`, `quantity`, `description`, `newOrUsed`, `price`) VALUES
+(1, 1, 5, 'Performance', 'Air Filters', 2, 'aaaaaaaaaaaaaaaaaddd', 'new', 5000);
 
 -- --------------------------------------------------------
 
@@ -71,7 +173,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `mobilenumber` varchar(20) NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`,`email`,`mobilenumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userID`, `username`, `password`, `email`, `mobilenumber`) VALUES
+(1, 'admin', 'admin', 'admin@gmail.com', '0712223334');
 
 -- --------------------------------------------------------
 
@@ -136,8 +245,9 @@ ALTER TABLE `cart`
 -- Constraints for table `part`
 --
 ALTER TABLE `part`
+  ADD CONSTRAINT `part_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`),
   ADD CONSTRAINT `part_ibfk_2` FOREIGN KEY (`vehicleID`) REFERENCES `vehicle` (`vehicleID`),
-  ADD CONSTRAINT `part_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
+  ADD CONSTRAINT `part_ibfk_3` FOREIGN KEY (`subCategory`) REFERENCES `category` (`subCategory`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
