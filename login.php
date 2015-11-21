@@ -1,5 +1,6 @@
  <head>
 <?php include "header.php"; ?>
+
  <style>
 #coverPics{
 	width: 100%
@@ -11,7 +12,7 @@
 	font-weight: bold;
 	font-size: 24px;
 }
-</style>
+ </style>
 
 
 <style>
@@ -46,10 +47,10 @@
 	position:absolute;
 	border:1px #333 solid;
 	border-radius:40px;
-	left:517px;
-	top:180px;
-	width:339px;
-	height:308px;
+	left:331px;
+	top:156px;
+	width:534px;
+	height:261px;
 	z-index:1;
 	color: #CCC;
 	background-color: rgba(255,255,255,0.8);
@@ -58,8 +59,8 @@
 	position:absolute;
 	left:7px;
 	top:0px;
-	width:387px;
-	height:351px;
+	width:524px;
+	height:250px;
 	z-index:2;
 	color: #000;
 	font-weight: bold;
@@ -69,8 +70,8 @@
 	border:1px #333 solid;
 	border-radius:40px;
 	position:absolute;
-	left:87px;
-	top:4px;
+	left:176px;
+	top:8px;
 	width:170px;
 	height:34px;
 	z-index:3;
@@ -84,66 +85,89 @@
 
 .usetex {
 	position: absolute;
-	width: 277px;
-	height: 39px;
-	left: 20px;
-	top: 94px;
+	width: 230px;
+	height: 25px;
+	left: 0px;
+	top: 95px;
 	background-color: #FFF;
 	font-size: 16px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	border-width:3px;
+	border-style:inset;
 }
 .password {
 	position: absolute;
-	width: 276px;
-	height: 41px;
-	left: 23px;
-	top: 184px;
+	width: 242px;
+	height: 27px;
+	left: 258px;
+	top: 94px;
 	background-color: #FFF;
 	font-size: 16px;
-	font-family:"Arial Black", Gadget, sans-serif;
+	border-width:3px;
+	border-style:inset;
 }
 .login {
 	position: absolute;
-	left: 96px;
-	top: 253px;
-	width: 138px;
-	height: 35px;
+	left: 367px;
+	top: 152px;
+	width: 112px;
+	height: 30px;
 	font-weight: bold;
 	font-size: 18px;
 	cursor:hand;
+	border-style:outset;
+	border-width:3px;
+	border-color:#999;
 }
 
 #apDiv1 #apDiv2 form p {
 	color: #000;
+	font-size: 14px;
+}
+#apDiv4 {
+	position:absolute;
+	left:598px;
+	top:231px;
+	width:126px;
+	height:22px;
+	z-index:2;
+	font-size: 14px;
+	font-weight: bold;
+}
+#apDiv5 {
+	position:absolute;
+	left:340px;
+	top:360px;
+	width:323px;
+	height:35px;
+	z-index:3;
+	font-size: 18px;
+	font-weight: bold;
 }
 </style>
+
+ 
 </head>
 <body>
+<div id="apDiv4">Password</div>
+<div id="apDiv5">You haven't Accout <a href="signup.php">REGISTER NOW</a></div>
 <div id="coverPics">
 <div id="apDiv1">
 <div id="apDiv3">User Login</div>
 <div id="apDiv2">
   <form name="form1" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
     <p>&nbsp;</p>
+    <p>&nbsp;</p>
     <p>Username</p>
     <p>
       <label for="textfield"></label>
-      <input name="textfield" type="text" class="usetex" placeholder="      Username" id="textfield" autofocus required>
-      <input name="button" type="submit" class="login" id="button" value="Login">
+      <input name="textfield" type="text" class="usetex" placeholder="   Username" id="textfield"  autofocus required>
+      <input name="button" type="submit" class="login" id="button" value="Login" onClick="return validatelogin()">
     </p>
     <p>&nbsp;</p>
-    <p>Password</p>
     <p>
       <label for="textfield2"></label>
-      <input name="textfield2" type="password" placeholder="      Password" class="password" id="textfield2" required>
+      <input name="textfield2" type="password" placeholder="    Password" class="password" id="textfield2" required>
 </p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
     <p>&nbsp;</p>
   </form>
 

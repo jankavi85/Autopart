@@ -77,7 +77,7 @@ function Fun() {
 	<div id ="menu" class="menubar">
 		<ul>
 	  		<li><a href="index.php">Home</a></li>	  		
-	  		<li><a href="#">FORUM</a></li>
+	  		<li><a href="forum.php">FORUM</a></li>
 			<li><a href="#">ABOUT Us</a></li>
 			<li><a href="#">CONTACT US</a></li>
  

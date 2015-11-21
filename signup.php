@@ -151,7 +151,10 @@ function confirmvalid()
 {
 	border-radius:20px;
 	background-color:#00b300;
-	font-family:"Arial Black", Gadget, sans-serif
+	font-family:"Arial Black", Gadget, sans-serif;
+	cursor:hand;
+	font-size:14px;
+	
 }
 
 
@@ -181,6 +184,26 @@ function confirmvalid()
 	color: #000;
 	background-color: 	#00b300;
 	text-align: center;
+}
+#username{
+	border-width:3px;
+	border-style:inset;
+}
+#password{
+	border-width:3px;
+	border-style:inset;
+}
+#confirmPassword{
+	border-width:3px;
+	border-style:inset;
+}
+#mobile{
+	border-width:3px;
+	border-style:inset;
+}
+#email{
+	border-width:3px;
+	border-style:inset;
 }
       </style>
 
