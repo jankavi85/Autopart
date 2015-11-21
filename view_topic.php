@@ -1,4 +1,5 @@
 <link href="css/forum.css" rel="stylesheet">
+<?php include "sessioncheck.php" ;?>
 <?php include 'header.php'; ?> 
 <style type="text/css">
 .createtabel {

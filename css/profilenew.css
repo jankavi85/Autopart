@@ -1,9 +1,9 @@
 #apDivProfBox {
 	position: absolute;
 	left: 100px;
-	top: 80px;
+	top: 75px;
 	width: 727px;
-	height: 563px;
+	height: 368px;
 	z-index: 1;
 	border-top-width: thin;
 	border-right-width: thin;
@@ -66,7 +66,7 @@
 	z-index: 4;
 	bottom: 0px;
 	border-right: thin solid rgba(212,212,212,1);
-	height: 521px;
+	height: 309px;
 }
 #apDivTopic0,#apDivTopic1,#apDivTopic2,#apDivTopic3 {
 	position: absolute;
@@ -124,7 +124,7 @@
 	left: 220px;
 	top: 57px;
 	width: 474px;
-	height: 570px;
+	height: 302px;
 	z-index: 3;
 	visibility : visible;
 	box-sizing: border-box;
@@ -136,7 +136,7 @@
 	z-index: 4;
 	visibility : visible;
 	position: absolute;
-	width: 645px;
+	width: 540px;
 }
 
 	

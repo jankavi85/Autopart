@@ -78,7 +78,7 @@ function selectFunction(variable){
 		
 	
 		
-		document.getElementById("apDivProfBox").style.height = "600px" ;	
+		document.getElementById("apDivProfBox").style.height = "400px" ;	
 
 		
 		}
@@ -101,7 +101,7 @@ function selectFunction(variable){
 		
 		
 		
-		document.getElementById("apDivProfBox").style.height = "500px" ;
+		document.getElementById("apDivProfBox").style.height = "400px" ;
 
 		}
 		
@@ -162,9 +162,12 @@ function selectFunction(variable){
 <td><strong>Name</strong></td>
 <td><?php echo $username;?></td>
 </tr>
+<tr><td height="10"></td></tr>
+<tr>
 <td ><strong>Email</strong></td>
 <td ><?php echo $email;?></td>
-</tr> 
+</tr>
+<tr><td height="10"></td></tr> 
 <tr>
 <td ><strong>Mobile</strong></td>
 <td ><?php echo $mobile?></td>
