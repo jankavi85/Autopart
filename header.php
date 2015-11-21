@@ -80,6 +80,12 @@ function Fun() {
 	  		<li><a href="forum.php">FORUM</a></li>
 			<li><a href="#">ABOUT Us</a></li>
 			<li><a href="#">CONTACT US</a></li>
+            
+	  		<?php
+		  		if(isset($_SESSION['user']) ){
+		  		echo"<li><a href=\"profile.php\">My Profile</a></li>";
+			}
+			?>  
  
 		</ul>
 	</div>
