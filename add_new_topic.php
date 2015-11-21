@@ -1,8 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-$user= $_SESSION['username'];
+include "sessioncheck.php" ;
+$user= $_SESSION['user'];
 $topic=$_POST['topic'];
 $detail=$_POST['detail'];
 
@@ -20,5 +18,5 @@ header('Location: forum.php');
 else {
 echo "ERROR";
 }
-mysql_close();
+mysqli_close($conn);
 ?>

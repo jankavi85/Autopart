@@ -303,7 +303,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	  $result = mysqli_query($conn, $sql);
 	 
 	  session_start();
-	  $_SESSION["username"] = $username;
+	  $_SESSION["user"] = $username;
 	  $_SESSION["mobile"] = $mobile;
 	  header("location:index.php");
 	  

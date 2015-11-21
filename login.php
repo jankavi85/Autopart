@@ -197,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	{
 	  $rows = mysqli_fetch_assoc($result);
 	  session_start();
-	  $_SESSION['username'] = $rows['username'];
+	  $_SESSION['user'] = $rows['username'];
 	  $_SESSION['mobile'] = $rows['mobilenumber'];
 	  header("location:index.php");
 	}

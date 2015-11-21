@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 20, 2015 at 01:36 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Nov 21, 2015 at 10:41 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `autopart`
 --
+CREATE DATABASE IF NOT EXISTS `autopart` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `autopart`;
 
 -- --------------------------------------------------------
 
@@ -132,6 +134,52 @@ INSERT INTO `category` (`subCategory`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fanswer`
+--
+
+CREATE TABLE IF NOT EXISTS `fanswer` (
+  `question_id` int(4) NOT NULL DEFAULT '0',
+  `a_id` int(4) NOT NULL DEFAULT '0',
+  `user` varchar(65) NOT NULL DEFAULT '',
+  `a_answer` longtext NOT NULL,
+  `a_datetime` varchar(25) NOT NULL DEFAULT '',
+  KEY `a_id` (`a_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fanswer`
+--
+
+INSERT INTO `fanswer` (`question_id`, `a_id`, `user`, `a_answer`, `a_datetime`) VALUES
+(8, 1, 'chamod', 'you can go to search button and search\r\n', '21/11/15 10:35:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fquestions`
+--
+
+CREATE TABLE IF NOT EXISTS `fquestions` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `user` varchar(65) NOT NULL DEFAULT '',
+  `topic` varchar(255) NOT NULL DEFAULT '',
+  `detail` longtext NOT NULL,
+  `datetime` varchar(25) NOT NULL DEFAULT '',
+  `view` int(4) NOT NULL DEFAULT '0',
+  `reply` int(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `fquestions`
+--
+
+INSERT INTO `fquestions` (`id`, `user`, `topic`, `detail`, `datetime`, `view`, `reply`) VALUES
+(10, 'chamod', 'ljkljk', 'ljklj', '21/11/15 10:39:01', 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `part`
 --
 
@@ -173,14 +221,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `mobilenumber` varchar(20) NOT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`,`email`,`mobilenumber`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`, `email`, `mobilenumber`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', '0712223334');
+(1, 'admin', 'fcea920f7412b5da7be0cf42b8c93759', 'admin@gmail.com', '0712223334'),
+(2, 'janith', 'fcea920f7412b5da7be0cf42b8c93759', 'janith@gmail.com', '0733333333'),
+(3, 'janithk', 'fcea920f7412b5da7be0cf42b8c93759', 'jan@gmail.com', '0776764785'),
+(4, 'miyuru', 'fcea920f7412b5da7be0cf42b8c93759', 'miyu@gmail.com', '0733333333'),
+(5, 'chamod', 'fcea920f7412b5da7be0cf42b8c93759', 'chamod@gmail.com', '0729577692'),
+(6, 'nisal', 'fcea920f7412b5da7be0cf42b8c93759', 'nisal@gmail.com', '0777777777');
 
 -- --------------------------------------------------------
 

@@ -1,6 +1,7 @@
 <head>
-<link rel="stylesheet" type="text/css" href="css/header.css">
 
+<?php include "header.php";
+include "sessioncheck.php" ;?>
 
 
 <style type="text/css">
@@ -35,7 +36,7 @@
 	border-style: outset;
 	border-width: 3px;
 	cursor:hand;
-	background-color: #FC0;
+	background-color: #0F0;
 	font-family:"Arial Black", Gadget, sans-serif;
 }
 
@@ -46,7 +47,7 @@
 </style>
 </head>
 
-<body bgcolor="#f2f2f2">
+<body>
 
 
 
@@ -88,12 +89,12 @@
         <tr>
           <td valign="top"><strong>Detail</strong></td>
           <td valign="top">:</td>
-          <td><textarea name="detail" cols="75%" rows="10" id="detail" required></textarea></td>
+          <td><textarea name="detail" cols="75%" rows="7" id="detail" required></textarea></td>
         </tr>
         <tr> <td></td></tr> <tr> <td></td></tr>
         <tr>
           <td>&nbsp;</td>
-       
+          <td>&nbsp;</td>
           <td><input type="submit" name="Submit" value="Submit" id="submit"/></td>
         </tr>
       </table></td>

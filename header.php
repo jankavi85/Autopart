@@ -47,8 +47,8 @@ function Fun() {
 <div id="apDivHeaderContainer">
 
 	<?php 		
-	if(isset($_SESSION['username']) ) { //Checking whether a user has logged in
-		$username=$_SESSION['username'];
+	if(isset($_SESSION['user']) ) { //Checking whether a user has logged in
+		$username=$_SESSION['user'];
 		$mobile=$_SESSION['mobile'];
 		
 		echo "
