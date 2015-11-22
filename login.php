@@ -191,15 +191,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	$password = md5($password);
 
 
-	$sql="SELECT username,password,mobilenumber FROM user WHERE username='$username' and password='$password'";
+	$sql="SELECT username,password,mobilenumber,usertype FROM user WHERE username='$username' and password='$password'";
 	$result=$conn->query($sql);
 	if($result->num_rows==1)
 	{
 	  $rows = mysqli_fetch_assoc($result);
+	  $usertype=$rows['usertype'];
+	  if($usertype=="admin")
+	  {
+		  session_start();
+		  $_SESSION['user'] = $rows['username'];
+	  	  $_SESSION['mobile'] = $rows['mobilenumber'];
+		  $_SESSION['usertype']= $rows['usertype'];
+		  header("location:admin/index.php"); 
+	  }
+	  else
+	  {
 	  session_start();
 	  $_SESSION['user'] = $rows['username'];
 	  $_SESSION['mobile'] = $rows['mobilenumber'];
 	  header("location:index.php");
+	  }
 	}
 	else
 	{
