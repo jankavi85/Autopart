@@ -102,12 +102,13 @@
 	width: 141px;
 }
 
+
 #Home
 {
 	position: absolute;
 	left: auto;
 	top: 25px;
-	width: 250px;
+	width: 172px;
 	height: 13px;
 	z-index: 5;
 	right: 15%;

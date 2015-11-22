@@ -24,20 +24,20 @@
 	position: absolute;
 	left: auto;
 	top: 25px;
-	width: 250px;
+	width: 170px;
 	height: 13px;
 	z-index: 5;
-	right: 21%;
+	right: 15%;
 }
 #UserHome
 {
 	position: absolute;
 	left: auto;
 	top: 25px;
-	width: 250px;
+	width: 160px;
 	height: 13px;
 	z-index: 5;
-	right: 35%;
+	right: 31%;
 }
 
 
