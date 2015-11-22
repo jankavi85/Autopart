@@ -2,7 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <head>
 
-<title>Autopart.lk</title>
+<title>autopart.lk</title>
 <meta charset="UTF-8">
 <link href="css/header.css" rel="stylesheet">
 
@@ -70,17 +69,9 @@ function Fun() {
 	
 	<div id="apDivUBar1"></div>
 	<div id="apDivUBar2"></div>
-	<div id="apDivBaasLk">Autopart.lk</div>
-    <?php
-    if(isset($_SESSION["usertype"])){
-      ?>
-	  <div id="Home">
-    <a href="/autopart/admin/index.php"><strong><h2>ADMIN HOME</h2></strong></a> 
-    </div>
-    <?php
-	 }
+	<div id="apDivBaasLk">autopart.lk</div>
 	
-	?>
+	
 
 	<div id ="menu" class="menubar">
 		<ul>
@@ -88,12 +79,6 @@ function Fun() {
 	  		<li><a href="forum.php">FORUM</a></li>
 			<li><a href="#">ABOUT Us</a></li>
 			<li><a href="#">CONTACT US</a></li>
-            
-	  		<?php
-		  		if(isset($_SESSION['user']) ){
-		  		echo"<li><a href=\"profile.php\">My Profile</a></li>";
-			}
-			?>  
  
 		</ul>
 	</div>

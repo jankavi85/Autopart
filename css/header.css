@@ -97,21 +97,10 @@
 	top: -10px;
 	font-family: "Bauhaus93";
 	font-size: 45px;
-	color: #5c5c5c;
+	color:#FFF;
 	height: 59px;
 	width: 141px;
-}
-
-
-#Home
-{
-	position: absolute;
-	left: auto;
-	top: 25px;
-	width: 172px;
-	height: 13px;
-	z-index: 5;
-	right: 15%;
+	
 }
 
 #joinus{

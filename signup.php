@@ -160,7 +160,12 @@ function confirmvalid()
 
 </style>
       <style>
-
+#coverPics{
+	width: 100%
+	top:0px;
+	background-image: url('images/2.jpg');
+	height: 100%
+}
 .SIGNUPFONT {
 	font-weight: bold;
 	font-size: 24px;
@@ -203,8 +208,8 @@ function confirmvalid()
       </style>
 
 </head>
-<body background="images/2.jpg">
-
+<body>
+<div id="coverPics">
 
 
   <div id="basic">

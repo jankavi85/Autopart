@@ -22,9 +22,9 @@
 					}
 					sort($array);
 					
-					echo "<option value='empty'>--Select a Engine--</option>";
+					echo "<option value=''>--Select a Engine--</option>";
 					foreach($array as $value){
-						echo "<option value=".$value.">".$value."</option>";
+						echo "<option >".$value."</option>";
 					}
 				}else{
 				
@@ -39,9 +39,9 @@
 				}
 				sort($array);
 				
-				echo "<option value='empty'>--Select a Submodel--</option>";
+				echo "<option value=''>--Select a Submodel--</option>";
 				foreach($array as $value){
-					echo "<option value=".$value.">".$value."</option>";
+					echo "<option >".$value."</option>";
 				}}
 			}
 			else{
@@ -55,9 +55,9 @@
 				}
 				sort($model);
 				
-				echo "<option value='empty'>--Select a Model--</option>";
+				echo "<option value=''>--Select a Model--</option>";
 				foreach($model as $value){
-					echo "<option value=".$value.">".$value."</option>";
+					echo "<option >".$value."</option>";
 				}
 			}
 	
@@ -71,9 +71,9 @@
 			}
 			sort($madeBy);
 			
-			echo "<option value='empty'>--Select a Made By--</option>";
+			echo "<option value=''>--Select a Made By--</option>";
 			foreach($madeBy as $value){
-				echo "<option value=".$value.">".$value."</option>";
+				echo "<option >".$value."</option>";
 			}
 		}
 	}

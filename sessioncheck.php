@@ -5,5 +5,6 @@
     } 
     if(!$_SESSION["user"]){
         header("location:login.php?session=notset");
-	 }
+	
+    }
 	?>

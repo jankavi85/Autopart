@@ -1,6 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
-
+.parttable {
+	position: absolute;
+	left: 18px;
+	top: 443px;
+	width: 1111px;
+	height: 140px;
+	z-index: 15;
+}
 
 .photos div {
 	display: block;
@@ -297,4 +304,32 @@
 	height:50px;
 	border:none;
 	outline:none;
+}
+
+.partList{
+	padding-top:20px;
+	width:50%;
+	height:150px;
+	background-color:#9F9;
+	border-radius:20px;
+	margin-left:10%;
+}
+
+.partListTitle{
+	color:#030;
+	font-size:20px;
+	margin-bottom:20px;
+	margin-left:115px;
+}
+.partListContain{
+	margin-left:20px;
+	font-size:18px;
+}
+.remain{
+	color:#03F;
+}
+.price{
+	color:#F00;
+	font-size:20px;
+	
 }

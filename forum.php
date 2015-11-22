@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?> 
+<?php //include 'header.php'; ?> 
 <link rel="stylesheet" type="text/css" href="css/forum.css" >
 <style type="text/css">
 #apDiv1 {
@@ -76,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include "database/dbconnect.php";
 $colorchange=0;
 $bgcolor="";
-
 
 $found =0;
 $sql = "SELECT * FROM fquestions ORDER BY id DESC";

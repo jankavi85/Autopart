@@ -2,6 +2,12 @@
 <?php include "header.php"; ?>
 
  <style>
+#coverPics{
+	width: 100%
+	top:0px;
+	background-image: url('images/2.jpg');
+	height: 100%
+}
 .SIGNUPFONT {
 	font-weight: bold;
 	font-size: 24px;
@@ -141,10 +147,10 @@
 
  
 </head>
-<body background="images/2.jpg">
+<body>
 <div id="apDiv4">Password</div>
 <div id="apDiv5">You haven't Accout <a href="signup.php">REGISTER NOW</a></div>
-
+<div id="coverPics">
 <div id="apDiv1">
 <div id="apDiv3">User Login</div>
 <div id="apDiv2">
@@ -185,27 +191,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	$password = md5($password);
 
 
-	$sql="SELECT username,password,mobilenumber,usertype FROM user WHERE username='$username' and password='$password'";
+	$sql="SELECT username,password,mobilenumber FROM user WHERE username='$username' and password='$password'";
 	$result=$conn->query($sql);
 	if($result->num_rows==1)
 	{
 	  $rows = mysqli_fetch_assoc($result);
-	  $usertype=$rows['usertype'];
-	  if($usertype=="admin")
-	  {
-		  session_start();
-		  $_SESSION['user'] = $rows['username'];
-	  	  $_SESSION['mobile'] = $rows['mobilenumber'];
-		  $_SESSION['usertype']= $rows['usertype'];
-		  header("location:admin/index.php"); 
-	  }
-	  else
-	  {
 	  session_start();
 	  $_SESSION['user'] = $rows['username'];
 	  $_SESSION['mobile'] = $rows['mobilenumber'];
 	  header("location:index.php");
-	  }
 	}
 	else
 	{

@@ -132,6 +132,27 @@
 			xmlhttp.send();
 		}
 	}
+	function validateQuantity(quantityID) {
+  		var qid = document.getElementById(quantityID);
+
+  		if (qid.value == "") {
+	   		alert("please fill quantity!");
+			qid.value=1;
+  			//return false;
+ 		}else{
+		  if (isNaN(qid.value)) {
+		  alert("invalid quantity!");
+		  qid.value=1;
+		  //return false;
+		 }else{
+			 if (qid.value<1) {
+		  	alert("minimum quantity is 1");
+			qid.value=1;
+		  	//return false;
+		 	}
+		 }
+		}
+	}
 </script>
 
 </head>
@@ -162,34 +183,34 @@
 </section>
 <div id="apDiv5"><img src="images/Index/findvehicle.png" width="355" height="300" />
 
-  <form id="form1" name="form1" method="post" action="">
+  <form id="form" name="form" method="post" action"<?php echo $_SERVER['PHP_SELF'];?>">
   	<div id="apDiv7">
-    	<select id="year" name="year" class="select" onchange="loadMadeBy(this.value)">
-      		<option value="empty">--Select a Year--</option>
+    	<select id="year" name="year" class="select" onchange="loadMadeBy(this.value)" required>
+      		<option value="">--Select a Year--</option>
     	</select>
     </div>   
     <div id="apDiv8">
-    	<select id="madeBy" name="madeBy" class="select" onchange="loadModel(year.value,this.value)">
-    		<option value="empty">--Select a Made By--</option>
+    	<select id="madeBy" name="madeBy" class="select" onchange="loadModel(year.value,this.value)" required>
+    		<option value="">--Select a Made By--</option>
     	</select>
     </div>
     <div id="apDiv9">
-   	  	<select id="model" name="model" class="select" onchange="loadSubmodel(year.value,madeBy.value,this.value)">
-    		<option value="empty">--Select a Model--</option>
+   	  	<select id="model" name="model" class="select" onchange="loadSubmodel(year.value,madeBy.value,this.value)" required>
+    		<option value="">--Select a Model--</option>
     	</select>
     </div>
     <div id="apDiv10">
-   	  	<select id="submodel" name="submodel" class="select" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)">
-    		<option value="empty">--Select a Submodel--</option>	
+   	  	<select id="submodel" name="submodel" class="select" onchange="loadEngine(year.value,madeBy.value,model.value,this.value)" required>
+    		<option value="">--Select a Submodel--</option>	
     	</select>
     </div>
 	<div id="apDiv11">
-   	  	<select id="engine" class="select" name="engine" >
-    		<option value="empty">--Select a Engine--</option>
+   	  	<select id="engine" class="select" name="engine" required>
+    		<option value="">--Select a Engine--</option>
     	</select>
     </div>
 	<div id="apDiv12">
-    	<input type="submit" id="findVehicle" value=""
+    	<input type="submit" id="findVehicle" value="" name="findVehicle"
          onmouseover="mouseOn('findVehicle','findButtonSel')" onmouseout="mouseOut('findVehicle','findButton')"
    		 style="background-image:url(images/Index/findButton.png);background-color: Transparent;"/>
     </div>
@@ -201,19 +222,112 @@
         onmouseover="mouseOn('sell','aftersell')" onmouseout="mouseOut('sell','presell')" onclick="location.href = 'sell.php';"
         style="background-image:url(images/Index/presell.png);background-color: Transparent;"/>
   </div>
-     
+     <form id="form1" name="form1" method="post" action"<?php echo $_SERVER['PHP_SELF'];?>">
      <div id="apDiv15">
      	<img src="images/Index/search.png" width="280" height="50" />
         <div id="apDiv17">
-        	<input type="text" name="search" id="searchtext" value="Ex:Air Filters/Bumpers"
+        	<input type="text" name="keyword" id="searchtext" value="Ex:Air Filters/Bumpers"
             onfocus="if(this.value == 'Ex:Air Filters/Bumpers') { this.value = ''; }" 
-      		onblur="if (this.value == '') {this.value = 'Ex:Air Filters/Bumpers'; }"/>
+      		onblur="if (this.value == '') {this.value = 'Ex:Air Filters/Bumpers'; }" required/>
         </div>
      </div>
-     <div id="apDiv16"><input type="submit" id="search" value="" 
+     <div id="apDiv16"><input type="submit" id="search" name="search" value=""
         onmouseover="mouseOn('search','aftersearch')" onmouseout="mouseOut('search','presearch')"
         style="background-image:url(images/Index/presearch.png);background-color: Transparent;"/>
      </div>
+     </form>
+</div>
+
+
+<div class="parttable">
+<?php
+	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		include "database/dbconnect.php";
+ 		if(isset($_POST["findVehicle"]) ){
+			
+			$year=$_POST['year'];
+			$madeBy=$_POST['madeBy'];
+			$model=$_POST['model'];
+			$submodel=$_POST['submodel'];
+			$engine=$_POST['engine'];
+			
+			$quary="SELECT vehicleID FROM vehicle WHERE year='".$year."' AND madeBy='".$madeBy."' AND model='".$model."' AND submodel='".$submodel."' AND engine='".$engine."'";
+			$result = $conn->query($quary);
+			
+				while($row = $result->fetch_assoc()){
+					$vehicleID =$row['vehicleID'];
+				}
+				
+				$quary="SELECT * FROM part WHERE vehicleID='".$vehicleID."'";
+				$result = $conn->query($quary);
+				
+				$count=mysqli_num_rows($result);
+				if( $count< 1){
+					echo "<div class='partListTitle'>Not Result Found For $year $madeBy $model $submodel $engine</div>";
+				}else{
+					echo "<div class='partListTitle'>$count Results Found For $year $madeBy $model $submodel $engine</div>";
+					
+					while($row = $result->fetch_assoc()){
+				
+	  		
+?>
+<div class="partList">
+<form name="addCartForm" class="partListContain" method="post" action="addToCart.php">
+<?php echo $row['description'];?><br>
+Category : <?php echo $row['category'];?><br>
+SubCategory : <?php echo $row['subCategory'];?><br>
+<div class="remain"> <?php echo $row['quantity'];?> more</div>
+<div class="price"> <?php echo $row['price'];?> LKR</div>
+<input type="number" class="partListContain"  id="quantity" min="1" max="<?php echo $row['quantity'];?>" value="1" onblur="validateQuantity('quantity')" required/>
+<input type="submit" class="partListContain" name="addToCart" value="Add to Cart" />
+<input type="text" class="partListContain" name="partID" value="<?php echo $row['partID'];?>" hidden="true"/>
+</form>
+</div>
+<br>
+<?php
+				}//closing while loop
+			}
+		}
+		
+		if(isset($_POST["search"])){
+			$keyword=$_POST['keyword'];
+			$quary="SELECT * FROM part WHERE subCategory='".$keyword."'";
+				$result = $conn->query($quary);
+				$count=mysqli_num_rows($result);
+				
+				if( $count< 1){
+					echo "<div class='partListTitle'>Not Results Found For #$keyword</div>";
+				}else{
+					echo "<div class='partListTitle'>$count Results Found For #$keyword</div>";
+				while($row = $result->fetch_assoc()){
+				
+	  		
+?>
+<div class="partList">
+<form name="addCartForm" class="partListContain" method="post" action="addToCart.php">
+<?php echo $row['description'];?><br>
+Category : <?php echo $row['category'];?><br>
+SubCategory : <?php echo $row['subCategory'];?><br>
+<div class="remain"> <?php echo $row['quantity'];?> more</div>
+<div class="price"> <?php echo $row['price'];?> LKR</div>
+<input type="number" class="partListContain"  id="quantity" min="1" max="<?php echo $row['quantity'];?>" value="1" onblur="validateQuantity('quantity')" required/>
+<input type="submit" class="partListContain" name="addToCart" value="Add to Cart" />
+<input type="text" class="partListContain" name="partID" value="<?php echo $row['partID'];?>" hidden="true"/>
+</form>
+</div>
+<br>
+<?php
+				}//closing while loop
+			}
+		}
+		
+			
+		}
+	
+?>
+
 </div>
 </body>
 </html>
+
+
