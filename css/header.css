@@ -102,6 +102,17 @@
 	width: 141px;
 }
 
+#Home
+{
+	position: absolute;
+	left: auto;
+	top: 25px;
+	width: 250px;
+	height: 13px;
+	z-index: 5;
+	right: 15%;
+}
+
 #joinus{
 	position: absolute;
 	right: 130px;

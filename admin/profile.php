@@ -1,11 +1,12 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/profilenew.css">
-<?php   
+<?php 
 	include "header.php";
-	include "database/dbconnect.php";
 	include "sessioncheck.php";
-	$username=$_SESSION['user'];
-    $sql = "SELECT * FROM user where username='$username'";
+	$id=$_GET['user'];  
+	
+	include "../database/dbconnect.php";
+    $sql = "SELECT * FROM user where userID='$id'";
     $result = mysqli_query($conn,$sql);
     $rws0 = mysqli_fetch_array($result);
 	$userid= $rws0['userID'];	
@@ -147,7 +148,7 @@ function selectFunction(variable){
 
   <div id="apDivProfAbout">
 
-		<div id="apDivIcon"><img src="images/face.png" width="40" height="39" alt="icon" /></div>
+		<div id="apDivIcon"><img src="../images/face.png" width="40" height="39" alt="icon" /></div>
 
 		<div id="apDivAbout">View</div>
       </div>

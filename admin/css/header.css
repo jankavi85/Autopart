@@ -19,6 +19,28 @@
     background-size: cover;
 }
 
+#Home
+{
+	position: absolute;
+	left: auto;
+	top: 25px;
+	width: 250px;
+	height: 13px;
+	z-index: 5;
+	right: 21%;
+}
+#UserHome
+{
+	position: absolute;
+	left: auto;
+	top: 25px;
+	width: 250px;
+	height: 13px;
+	z-index: 5;
+	right: 35%;
+}
+
+
 #apDivHeaderContainer {
 	position: absolute;
 	left: 0px;

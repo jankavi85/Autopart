@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 21, 2015 at 10:41 AM
+-- Generation Time: Nov 22, 2015 at 08:27 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -146,13 +146,6 @@ CREATE TABLE IF NOT EXISTS `fanswer` (
   KEY `a_id` (`a_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `fanswer`
---
-
-INSERT INTO `fanswer` (`question_id`, `a_id`, `user`, `a_answer`, `a_datetime`) VALUES
-(8, 1, 'chamod', 'you can go to search button and search\r\n', '21/11/15 10:35:28');
-
 -- --------------------------------------------------------
 
 --
@@ -168,14 +161,14 @@ CREATE TABLE IF NOT EXISTS `fquestions` (
   `view` int(4) NOT NULL DEFAULT '0',
   `reply` int(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `fquestions`
 --
 
 INSERT INTO `fquestions` (`id`, `user`, `topic`, `detail`, `datetime`, `view`, `reply`) VALUES
-(10, 'chamod', 'ljkljk', 'ljklj', '21/11/15 10:39:01', 0, 0);
+(10, 'chamod', 'ljkljk', 'ljklj', '21/11/15 10:39:01', 32, 8);
 
 -- --------------------------------------------------------
 
@@ -219,21 +212,22 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) NOT NULL,
   `email` varchar(60) NOT NULL,
   `mobilenumber` varchar(20) NOT NULL,
+  `usertype` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`,`email`,`mobilenumber`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `username`, `password`, `email`, `mobilenumber`) VALUES
-(1, 'admin', 'fcea920f7412b5da7be0cf42b8c93759', 'admin@gmail.com', '0712223334'),
-(2, 'janith', 'fcea920f7412b5da7be0cf42b8c93759', 'janith@gmail.com', '0733333333'),
-(3, 'janithk', 'fcea920f7412b5da7be0cf42b8c93759', 'jan@gmail.com', '0776764785'),
-(4, 'miyuru', 'fcea920f7412b5da7be0cf42b8c93759', 'miyu@gmail.com', '0733333333'),
-(5, 'chamod', 'fcea920f7412b5da7be0cf42b8c93759', 'chamod@gmail.com', '0729577692'),
-(6, 'nisal', 'fcea920f7412b5da7be0cf42b8c93759', 'nisal@gmail.com', '0777777777');
+INSERT INTO `user` (`userID`, `username`, `password`, `email`, `mobilenumber`, `usertype`) VALUES
+(1, 'admin', 'fcea920f7412b5da7be0cf42b8c93759', 'admin@gmail.com', '0712223334', NULL),
+(4, 'miyuru', 'fcea920f7412b5da7be0cf42b8c93759', 'miyu@gmail.com', '0733333333', NULL),
+(5, 'chamod', 'fcea920f7412b5da7be0cf42b8c93759', 'chamod@gmail.com', '0729577692', NULL),
+(6, 'nisal', 'fcea920f7412b5da7be0cf42b8c93759', 'nisal@gmail.com', '0777777777', NULL),
+(8, 'ljklj', 'fcea920f7412b5da7be0cf42b8c93759', 'd@gmail.com', '1234567890', NULL),
+(9, 'autopartadmin', 'fcea920f7412b5da7be0cf42b8c93759', 'autopartadmin@gmail.com', '0729577692', 'admin');
 
 -- --------------------------------------------------------
 

@@ -1,15 +1,9 @@
 <?php include "sessioncheck.php";
 	include "header.php";
 ?>
-<head>
 
 <style type="text/css">
- #coverPics{
-	width: 100%
-	top:0px;
-	background-image: url('/autopart/images/2.jpg');
-	height: 100%
-}
+
 
 p{	
 	color: rgba(51,51,51,1);
@@ -86,6 +80,7 @@ h3{
 	border-radius : 40px;
 }
 </style>
+
 <script type="text/javascript">
 	function toggle(Info) {
   		var CState = document.getElementById(Info);
@@ -122,8 +117,9 @@ h3{
   		CState.style.display = (CState.style.display != 'block') ? 'block' : 'none';
 		}
 </script>
-</head>
-<body>
+
+
+<body background="images/cover.jpg">
 <div  id="apDivTitle">
 <h1 align="left">Manage Options</h1>
 <div class="FAQ" onClick="toggle('show1')">	
@@ -159,7 +155,7 @@ h3{
         <td width="25%" height="100" align="center"><a href="cmremove.php"><img src="images/1.jpg" height="100" width="100"></img></a></td>
         </tr>
         <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="cmremove.php"><strong>Remove Account</strong></a></td>
+         <td width="25%" height="50" align="center" class="tablefont"><a href="cmremove.php"><strong>Parts</strong></a></td>
          </tr>
     </table>
 
@@ -172,7 +168,7 @@ h3{
         <td width="25%" height="100" align="center"><a href="forumremove.php"><img src="images/4.jpg" height="100" width="100"></img></a></td>
         </tr>
         <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="forumremove.php"><strong>Remove Topic</strong></a></td>
+         <td width="25%" height="50" align="center" class="tablefont"><a href="forumremove.php"><strong>Forum</strong></a></td>
          </tr>
     </table>
 </div>
@@ -183,13 +179,10 @@ h3{
         <td width="25%" height="100" align="center"><a href="jobremove.php"><img src="images/4.jpg" height="100" width="100"></img></a></td>
         </tr>
         <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="jobremove.php"><strong>Remove Jobs</strong></a></td>
+         <td width="25%" height="50" align="center" class="tablefont"><a href="jobremove.php"><strong>Jobs</strong></a></td>
          </tr>
     </table>
 </div>
-<div id="coverPics"></div>
-
-</body>
 
 	
     

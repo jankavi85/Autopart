@@ -2,12 +2,6 @@
 <?php include "header.php"; ?>
 
  <style>
-#coverPics{
-	width: 100%
-	top:0px;
-	background-image: url('images/2.jpg');
-	height: 100%
-}
 .SIGNUPFONT {
 	font-weight: bold;
 	font-size: 24px;
@@ -147,10 +141,10 @@
 
  
 </head>
-<body>
+<body background="images/2.jpg">
 <div id="apDiv4">Password</div>
 <div id="apDiv5">You haven't Accout <a href="signup.php">REGISTER NOW</a></div>
-<div id="coverPics">
+
 <div id="apDiv1">
 <div id="apDiv3">User Login</div>
 <div id="apDiv2">

@@ -63,7 +63,12 @@ function Fun() {
 	<div id="apDivUBar1"></div>
 	<div id="apDivUBar2"></div>
 	<div id="apDivBaasLk">Autopart.lk</div>
-	
+	<div id="Home">
+<a href="/autopart/admin/index.php"><strong><h2>ADMIN HOME</h2></strong></a> 
+</div>
+<div id="UserHome">
+<a href="/autopart/index.php"><strong><h2>USERS HOME</h2></strong></a> 
+</div>
 	
 </div>
 

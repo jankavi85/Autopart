@@ -71,8 +71,16 @@ function Fun() {
 	<div id="apDivUBar1"></div>
 	<div id="apDivUBar2"></div>
 	<div id="apDivBaasLk">Autopart.lk</div>
+    <?php
+    if(isset($_SESSION["usertype"])){
+      ?>
+	  <div id="Home">
+    <a href="/autopart/admin/index.php"><strong><h2>ADMIN HOME</h2></strong></a> 
+    </div>
+    <?php
+	 }
 	
-	
+	?>
 
 	<div id ="menu" class="menubar">
 		<ul>
