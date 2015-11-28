@@ -1,7 +1,5 @@
 <?php 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include "sessioncheck.php" ;
 
 ?>
 
@@ -53,7 +51,7 @@ function Fun() {
 		
 		echo "
 			
-			<a href =\"/autopart/logout.php\"><div id=\"apDivLogout\">
+			<a href =\"../logout.php\"><div id=\"apDivLogout\">
 			<img src=\"images/lgout.png\" width=\"100\" height=\"35\" alt=\"logot\" /></div></a>";
 	}
 
@@ -64,10 +62,10 @@ function Fun() {
 	<div id="apDivUBar2"></div>
 	<div id="apDivBaasLk">Autopart.lk</div>
 	<div id="Home">
-<a href="/autopart/admin/index.php"><strong><h2>ADMIN HOME</h2></strong></a> 
+<a href="../admin/index.php"><strong><h2>ADMIN HOME</h2></strong></a> 
 </div>
 <div id="UserHome">
-<a href="/autopart/index.php"><strong><h2>USERS HOME</h2></strong></a> 
+<a href="../index.php"><strong><h2>USERS HOME</h2></strong></a> 
 </div>
 	
 </div>

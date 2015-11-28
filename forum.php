@@ -1,4 +1,4 @@
-<?php //include 'header.php'; ?> 
+<?php include "header.php" ?>
 <link rel="stylesheet" type="text/css" href="css/forum.css" >
 <style type="text/css">
 #apDiv1 {
@@ -77,10 +77,11 @@ include "database/dbconnect.php";
 $colorchange=0;
 $bgcolor="";
 
+
 $found =0;
 $sql = "SELECT * FROM fquestions ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
-$word =mysql_real_escape_string(stripslashes($_POST['textfield']));
+$word =stripslashes($_POST['textfield']);
 $word = str_replace(' ','',$word);
 ?>
 <div id="apDiv1">

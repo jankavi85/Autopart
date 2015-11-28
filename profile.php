@@ -1,11 +1,13 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/profilenew.css">
-<?php 
+<link rel="stylesheet" type="text/css" href="css/partDetails.css" />
+<?php   
 	include "header.php";
-	$id=$_GET['user'];  
-	
-	include "../database/dbconnect.php";
-    $sql = "SELECT * FROM user where userID='$id'";
+	include "database/dbconnect.php";
+	include "sessioncheck.php";
+	$username=$_SESSION['user'];
+    $sql = "SELECT * FROM user where username='$username'";
+    //echo $sql;
     $result = mysqli_query($conn,$sql);
     $rws0 = mysqli_fetch_array($result);
 	$userid= $rws0['userID'];	
@@ -147,7 +149,7 @@ function selectFunction(variable){
 
   <div id="apDivProfAbout">
 
-		<div id="apDivIcon"><img src="../images/face.png" width="40" height="39" alt="icon" /></div>
+		<div id="apDivIcon"><img src="images/face.png" width="40" height="39" alt="icon" /></div>
 
 		<div id="apDivAbout">View</div>
       </div>
@@ -185,58 +187,87 @@ function selectFunction(variable){
 
 
  <div id="apDivOptionBox0">
-<table width="500" border="0" align="left" >
- <tr>
-<td><table width="100%" border="0" align="center">
-<tr><td></td></tr>
-<tr><td></td></tr>
-<tr><td></td></tr>
-<tr>
-<td><strong>Name</strong></td>
-<td><?php echo $username;?></td>
-</tr>
-<tr><td height="10"></td></tr>
-<tr>
-<td ><strong>Email</strong></td>
-<td ><?php echo $email;?></td>
-</tr>
-<tr><td height="10"></td></tr> 
-<tr>
-<td ><strong>Mobile</strong></td>
-<td ><?php echo $mobile?></td>
-</tr> 
-</table>
-</td>
-</tr>
-</table>
-    
+ 	<section id="bordermy">
+   		<div class="rowmy">
+ 			<p class="left" ><strong>Name  : </strong></p>
+ 			<p class="right" ><?php echo $username;?></p>
+ 		</div>
+ 		<div class="rowmy">
+ 			<p class="left" ><strong>Email  : </strong></p>
+ 			<p class="right" ><?php echo $email;?></p>
+ 		</div>
+ 		<div class="rowmy">
+ 			<p class="left" ><strong>Mobile : </strong></p>
+ 			<p class="right" ><?php echo $mobile?></p>
+ 		</div>
+ 	</section> 
 
 
   </div>
     
 <div id="apDivOptionBox1">
-<table>
-<tr>
-<td><strong>History</strong></td>
-<td align="center">
-<strong><?php echo "NOt founda" ?></strong>
-</td>
-</tr>
-<tr>
-    <td></td>
-    </tr>
-    <tr>
-    <td></td>
-    </tr>
-<tr>
-<td><strong>Websites</strong></td>
-<td>
-<strong><?php	echo "Not Found"; ?></strong>
-</td>
-</tr>
-</table>
+	<?php
+$getPartIdSQL = "SELECT `partID`, `quantity` FROM `cart` WHERE `userID`= '$userid' ;";
+//echo $sql1;
+$resultgetCart = $conn->query($getPartIdSQL);
+if ($resultgetCart->num_rows > 0) {
+    while ($rowGrtCart = $resultgetCart->fetch_assoc()) {
+        $pID = $rowGrtCart["partID"];
+        $qunty = $rowGrtCart["quantity"];
+        $sqlFromPart = "SELECT `subCategory`,`newOrUsed`, `price` FROM `part` WHERE partID = '$pID' ; ";
+        $resultFromPart = $conn->query($sqlFromPart);
+        while ($rowFromPart = $resultFromPart->fetch_assoc()) {
+            $sCat = $rowFromPart["subCategory"];
+            $china = $rowFromPart["newOrUsed"];
+            $price = $rowFromPart["price"];
+        }
+        ?>
+        <section id="border">
+            <p id="p1"><?php echo $china ?> <?php echo $qunty ?> <?php echo $sCat ?></p>
+            <p id="p3">Rs <?php echo $price ?> each</p>
+            <hr>
+        </section> <?php }
+}else{ ?>
+ 		<section id="borderEmpty">
+ 		<p id="pr"><strong>you did not add anything to cart</strong></p>
+ 	</section>
+ 	<?php } ?> 
+   
  </div>
- <div id="apDivOptionBox2">    
+
+ <div id="apDivOptionBox2">
+ 	<?php
+
+ 	$getUserIdSQL = "SELECT `subCategory`, `quantity`, `description`, `newOrUsed`, `price` FROM `part` WHERE userID = '$userid' ; ";
+ 	
+
+    $UserIdResult = $conn->query($getUserIdSQL);
+    //echo $UserIdResult;
+
+    if ($UserIdResult->num_rows > 0) {
+        while ($DetailRow = $UserIdResult->fetch_assoc()) {
+            $sCat = $DetailRow["subCategory"];
+            $qun = $DetailRow["quantity"];
+            $desc = $DetailRow["description"];
+            $china = $DetailRow["newOrUsed"];
+            $price = $DetailRow["price"];
+            //echo $price;
+    ?>                                
+                              
+ 	<section id="border">
+ 		<p id="p1"><?php echo $china ?> <?php echo $qun ?> <?php echo $sCat ?></p>
+ 		<hr>
+ 		<p id="p2"><?php echo $desc ?></p>
+ 		<hr>
+ 		<p id="p3">Rs <?php echo $price ?></p>
+ 	</section>
+ 	<?php }}
+ 	else{ ?>
+ 		<section id="borderEmpty">
+ 		<p id="pr"><strong>You have not add any part</strong></p>
+ 	</section>
+ 	<?php } ?> 
+ 	
   </div>
       
 </div>

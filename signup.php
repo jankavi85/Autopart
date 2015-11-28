@@ -1,5 +1,7 @@
 <head>
-<?php include "header.php"; ?>
+<?php ob_start();
+include "header.php"; ?>
+
 <script type="text/javascript">
 function ValidateMobNumber(txtMobId) {
   var fld = document.getElementById(txtMobId);

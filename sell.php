@@ -1,4 +1,5 @@
 <?php
+	include "sessioncheck.php";
 	include "database/dbconnect.php";
 	$query = "SELECT DISTINCT year FROM vehicle";
   	$result = $conn->query($query);
@@ -27,6 +28,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Sell a part</title>
 <?php include "header.php" ?>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <style type="text/css">
 #apDiv1 {
 	position: absolute;
@@ -131,10 +134,11 @@
 	height: 19px;
 	font-size: 13px;
 	border:none;
-	background-color:#FFF;
+	color: #000;
+	background-color: #f2f2f2;
 	outline:none;
-	
 }
+
 .selldes{
     width: 285px;
 	height: 90px;
@@ -159,6 +163,7 @@
 	outline:none;
 }
 </style>
+<script src="script/bootstrap.js" type="text/javascript"></script>
 <script src="script/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="script/index.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -457,15 +462,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 			$userID =$row['userID'];
 	  }
 	  
-	  
 	  $sql="INSERT INTO part(userID,vehicleID,category,subCategory,quantity,description,newOrUsed,price) VALUES('$userID','$vcehicleID','$category','$subcategory','$quantity','$description','$neworused','$price')";	
 	  
 	  if ($conn->query($sql) === TRUE) {
-    	echo "New record created successfully";
+    		echo '<script language="javascript">alert("New part added Successfully!")</script>';
 	  } else {
-    	echo "Error: " . $sql . "<br>" . $conn->error;
+    		echo '<script language="javascript">alert("New part added Unsuccessfully!")</script>';
 	  }
-
 	  //$result = mysqli_query($conn, $sql);
 	  
   }

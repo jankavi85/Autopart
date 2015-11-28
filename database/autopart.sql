@@ -1,48 +1,15 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Nov 21, 2015 at 10:41 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `autopart`
---
-CREATE DATABASE IF NOT EXISTS `autopart` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `autopart`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cart`
---
 
 CREATE TABLE IF NOT EXISTS `cart` (
   `cardID` int(11) NOT NULL AUTO_INCREMENT,
   `partID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `address` varchar(150) NOT NULL,
+  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`cardID`),
   KEY `partID` (`partID`,`userID`),
   KEY `userID` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
 
 CREATE TABLE IF NOT EXISTS `category` (
   `subCategory` varchar(30) NOT NULL,
@@ -50,9 +17,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`subCategory`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `category`
---
+
 
 INSERT INTO `category` (`subCategory`, `category`) VALUES
 ('Air Filters', 'Performance'),
@@ -93,13 +58,13 @@ INSERT INTO `category` (`subCategory`, `category`) VALUES
 ('Hitches', 'Exterior'),
 ('Hood Scoops', 'Exterior'),
 ('Hoods', 'Replacement'),
-('Hub Cap', 'Wheels & Tires'),
+('Hub Cap', 'Wheels and Tires'),
 ('Ignition Coil & Wire Sets', 'Performance'),
 ('Leaf Springs', 'Suspension'),
 ('Leveling Kits', 'Suspension'),
 ('Lowering Kits', 'Suspension'),
 ('Lowering Springs', 'Suspension'),
-('Lug Nut', 'Wheels & Tires'),
+('Lug Nut', 'Wheels and Tires'),
 ('Mass Air Flow Sensors', 'Performance'),
 ('Mirrors', 'Exterior'),
 ('Mud Guards', 'Exterior'),
@@ -125,17 +90,13 @@ INSERT INTO `category` (`subCategory`, `category`) VALUES
 ('Throttle Body', 'Performance'),
 ('Throttle Body Spacer', 'Performance'),
 ('Tonneau Covers', 'Exterior'),
-('Wheel & Rims', 'Wheels & Tires'),
-('Wheel Bearings & Hubs', 'Wheels & Tires'),
-('Wheel Covers', 'Wheels & Tires'),
-('Wheel Hub', 'Wheels & Tires'),
-('Wheel Locks', 'Wheels & Tires');
+('Wheel & Rims', 'Wheels and Tires'),
+('Wheel Bearings & Hubs', 'Wheels and Tires'),
+('Wheel Covers', 'Wheels and Tires'),
+('Wheel Hub', 'Wheels and Tires'),
+('Wheel Locks', 'Wheels and Tires');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `fanswer`
---
 
 CREATE TABLE IF NOT EXISTS `fanswer` (
   `question_id` int(4) NOT NULL DEFAULT '0',
@@ -146,18 +107,9 @@ CREATE TABLE IF NOT EXISTS `fanswer` (
   KEY `a_id` (`a_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `fanswer`
---
-
 INSERT INTO `fanswer` (`question_id`, `a_id`, `user`, `a_answer`, `a_datetime`) VALUES
 (8, 1, 'chamod', 'you can go to search button and search\r\n', '21/11/15 10:35:28');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `fquestions`
---
 
 CREATE TABLE IF NOT EXISTS `fquestions` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
@@ -168,20 +120,13 @@ CREATE TABLE IF NOT EXISTS `fquestions` (
   `view` int(4) NOT NULL DEFAULT '0',
   `reply` int(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Dumping data for table `fquestions`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 INSERT INTO `fquestions` (`id`, `user`, `topic`, `detail`, `datetime`, `view`, `reply`) VALUES
-(10, 'chamod', 'ljkljk', 'ljklj', '21/11/15 10:39:01', 0, 0);
+(10, 'chamod', 'ljkljk', 'ljklj', '21/11/15 10:39:01', 0, 0),
+(12, 'miyuru', 'jlj', 'lj;kjlk', '24/11/15 10:45:32', 2, 0);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `part`
---
 
 CREATE TABLE IF NOT EXISTS `part` (
   `partID` int(11) NOT NULL AUTO_INCREMENT,
@@ -198,20 +143,19 @@ CREATE TABLE IF NOT EXISTS `part` (
   KEY `vehicleID` (`vehicleID`),
   KEY `subCategory` (`subCategory`),
   KEY `category` (`category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
---
--- Dumping data for table `part`
---
 
 INSERT INTO `part` (`partID`, `userID`, `vehicleID`, `category`, `subCategory`, `quantity`, `description`, `newOrUsed`, `price`) VALUES
-(1, 1, 5, 'Performance', 'Air Filters', 2, 'aaaaaaaaaaaaaaaaaddd', 'new', 5000);
+(1, 1, 5, 'Performance', 'Air Filters', 2, 'aaaaaaaaaaaaaaaaaddd', 'new', 5000),
+(2, 2, 11, 'Replacement', 'Control Arms', 3, 'dexer ere re', 'Used', 6500),
+(3, 2, 10, 'Wheels and Tires', 'Wheel Hub', 5, 'dgff rt t', 'Brand New', 6000),
+(4, 2, 10, 'Wheels and Tires', 'Wheel Hub', 1, 'dgff rt t', 'Used', 5000),
+(5, 10, 9, 'Wheels and Tires', 'Wheel Hub', 3, 'cvfvfd dfgfdg', 'Brand New', 5000),
+(6, 10, 10, 'Replacement', 'Spark Plugs', 10, 'spark plugs', 'Used', 5300),
+(7, 10, 10, 'Interior', 'Floor Liners/Mats', 1, 'sfd dgfdgdf ', 'Brand New', 12000);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `user`
---
 
 CREATE TABLE IF NOT EXISTS `user` (
   `userID` int(11) NOT NULL AUTO_INCREMENT,
@@ -219,27 +163,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) NOT NULL,
   `email` varchar(60) NOT NULL,
   `mobilenumber` varchar(20) NOT NULL,
+  `usertype` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username` (`username`,`email`,`mobilenumber`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
---
--- Dumping data for table `user`
---
+INSERT INTO `user` (`userID`, `username`, `password`, `email`, `mobilenumber`, `usertype`) VALUES
+(1, 'admin', 'fcea920f7412b5da7be0cf42b8c93759', 'admin@gmail.com', '0712223334', NULL),
+(4, 'miyuru', 'fcea920f7412b5da7be0cf42b8c93759', 'miyu@gmail.com', '0733333333', NULL),
+(5, 'chamod', 'fcea920f7412b5da7be0cf42b8c93759', 'chamod@gmail.com', '0729577692', NULL),
+(6, 'nisal', 'fcea920f7412b5da7be0cf42b8c93759', 'nisal@gmail.com', '0777777777', NULL),
+(8, 'ljklj', 'fcea920f7412b5da7be0cf42b8c93759', 'd@gmail.com', '1234567890', NULL),
+(9, 'autopartadmin', 'fcea920f7412b5da7be0cf42b8c93759', 'autopartadmin@gmail.com', '0729577692', 'admin');
 
-INSERT INTO `user` (`userID`, `username`, `password`, `email`, `mobilenumber`) VALUES
-(1, 'admin', 'fcea920f7412b5da7be0cf42b8c93759', 'admin@gmail.com', '0712223334'),
-(2, 'janith', 'fcea920f7412b5da7be0cf42b8c93759', 'janith@gmail.com', '0733333333'),
-(3, 'janithk', 'fcea920f7412b5da7be0cf42b8c93759', 'jan@gmail.com', '0776764785'),
-(4, 'miyuru', 'fcea920f7412b5da7be0cf42b8c93759', 'miyu@gmail.com', '0733333333'),
-(5, 'chamod', 'fcea920f7412b5da7be0cf42b8c93759', 'chamod@gmail.com', '0729577692'),
-(6, 'nisal', 'fcea920f7412b5da7be0cf42b8c93759', 'nisal@gmail.com', '0777777777');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `vehicle`
---
 
 CREATE TABLE IF NOT EXISTS `vehicle` (
   `vehicleID` int(3) NOT NULL,
@@ -250,10 +187,6 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `engine` varchar(20) NOT NULL,
   PRIMARY KEY (`vehicleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `vehicle`
---
 
 INSERT INTO `vehicle` (`vehicleID`, `year`, `madeBy`, `model`, `submodel`, `engine`) VALUES
 (1, 2010, 'Honda', 'Accord', '', ''),
@@ -283,25 +216,7 @@ INSERT INTO `vehicle` (`vehicleID`, `year`, `madeBy`, `model`, `submodel`, `engi
 (25, 2010, 'Benz', '', '', ''),
 (26, 2010, 'BMW', '', '', '');
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `cart`
---
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`partID`) REFERENCES `part` (`partID`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
 
---
--- Constraints for table `part`
---
-ALTER TABLE `part`
-  ADD CONSTRAINT `part_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`),
-  ADD CONSTRAINT `part_ibfk_2` FOREIGN KEY (`vehicleID`) REFERENCES `vehicle` (`vehicleID`),
-  ADD CONSTRAINT `part_ibfk_3` FOREIGN KEY (`subCategory`) REFERENCES `category` (`subCategory`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

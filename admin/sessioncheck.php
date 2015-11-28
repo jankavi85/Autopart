@@ -4,6 +4,6 @@
         session_start(); 
     } 
     if(!$_SESSION["usertype"]){
-        header("location:/autopart/login.php?session=notset");
+        header("location:../login.php?session=notset");
 	 }
 ?>

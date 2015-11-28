@@ -79,7 +79,7 @@ include "../database/dbconnect.php";
 $colorchange=0;
 $bgcolor="";
 $found =0;
-$sql = "SELECT * FROM fquestions ORDER BY id DESC";
+$sql = "SELECT * FROM part ORDER BY partID DESC";
 $result = mysqli_query($conn, $sql);
 $word =stripslashes($_POST['textfield']);
 $word = str_replace(' ','',$word);
@@ -103,16 +103,17 @@ $word = str_replace(' ','',$word);
 <table width="1100" height="107" align="center" cellpadding="3" cellspacing="0" border="0" >
 <tr >
 <td width="10%"  align="center" bgcolor="#999"><strong>Remove</strong></td>
-<td width="25%"  align="center" bgcolor="#999"><strong>Discussion</strong></td>
-<td width="25%"  align="center" bgcolor="#999"><strong>Started by</strong></td>
-<td width="15%"  align="center" bgcolor="#999"><strong>Views</strong></td>
-<td width="15%"  align="center" bgcolor="#999"><strong>Replies</strong></td>
-<td width="10%"  align="center" bgcolor="#999"><strong>Date/Time</strong></td>
+<td width="20%"  align="center" bgcolor="#999"><strong>category</strong></td>
+<td width="20%"  align="center" bgcolor="#999"><strong>subCategory</strong></td>
+<td width="7%"  align="center" bgcolor="#999"><strong>quantity</strong></td>
+<td width="20%"  align="center" bgcolor="#999"><strong>description</strong></td>
+<td width="10%"  align="center" bgcolor="#999"><strong>neworused</strong></td>
+<td width="13%"  align="center" bgcolor="#999"><strong>price</strong></td>
 </tr>
 <?php
 if (mysqli_num_rows($result) > 0) {
 while($rows = mysqli_fetch_assoc($result)) {
-       $string = $rows["topic"];
+       $string = $rows["category"].$rows["subCategory"];
 	   $string = str_replace(' ','',$string);
 	   $string = strtolower($string);
 	   if(strpos($string,strtolower($word))>-1) 
@@ -128,13 +129,15 @@ while($rows = mysqli_fetch_assoc($result)) {
 	}
 ?>
 <tr>
-<td bgcolor="<?php echo $bgcolor?>" align="center"><a href= "remove.php?detail=<?php  echo "forum".",".$rows['id'];?>" onClick="return confirm("realy delete ?")"><img src="images/rm.jpg" alt="" border=3 height=30 width=30></img></a></td>
-<td bgcolor="<?php echo $bgcolor?>" align="center"><a href="view_topic.php?id=<?php echo $rows['id']; ?>" target="_blank" ><strong><?php echo $rows['topic']; ?></strong></a><BR></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>" width ="50%" height="100%"><?php echo $rows['user'];?></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['view']; ?></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['reply']; ?></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['datetime']; ?></td>
+<td bgcolor="<?php echo $bgcolor?>" align="center"><a href= "remove.php?detail=<?php  echo "part".",".$rows['partID'];?>" onClick="msg()"><img src="images/rm.jpg" alt="" border=3 height=30 width=30></img></a></td>
+<td bgcolor="<?php echo $bgcolor?>" align="center"><?php echo $rows['category']; ?></strong></a><BR></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['subCategory'];?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['quantity']; ?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['description']; ?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['newOrUsed']; ?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['price']; ?></td>
 </tr>
+ 
  
 	
  <?php       		   
@@ -185,7 +188,7 @@ mysqli_close($conn);
 }
 else{
 include "../database/dbconnect.php"; 
-$sql = "SELECT * FROM fquestions ORDER BY id DESC";
+$sql = "SELECT * FROM part ORDER BY partID DESC";
 $result = mysqli_query($conn, $sql);
 $colorchange=0;
 $bgcolor="";
@@ -195,13 +198,14 @@ $bgcolor="";
 <tr>
 <td>
 <table width="1100" height="107" align="center" cellpadding="3"  cellspacing="0"  >
-<tr>
-<td width="10%" align="center" bgcolor="#999"><strong>Remove</strong></td>
-<td width="30%" align="center" bgcolor="#999"><strong>Discussion</strong></td>
-<td width="10%" align="center" bgcolor="#999"><strong>Started by</strong></td>
-<td width="15%" align="center" bgcolor="#999"><strong>Views</strong></td>
-<td width="15%" align="center" bgcolor="#999"><strong>Replies</strong></td>
-<td width="20%" align="center" bgcolor="#999"><strong>Date/Time</strong></td>
+<tr >
+<td width="10%"  align="center" bgcolor="#999"><strong>Remove</strong></td>
+<td width="20%"  align="center" bgcolor="#999"><strong>category</strong></td>
+<td width="20%"  align="center" bgcolor="#999"><strong>subCategory</strong></td>
+<td width="7%"  align="center" bgcolor="#999"><strong>quantity</strong></td>
+<td width="20%"  align="center" bgcolor="#999"><strong>description</strong></td>
+<td width="10%"  align="center" bgcolor="#999"><strong>neworused</strong></td>
+<td width="13%"  align="center" bgcolor="#999"><strong>price</strong></td>
 </tr>
  
 <?php
@@ -218,12 +222,13 @@ while($rows = mysqli_fetch_array($result)){
 		$bgcolor="#EEE";}
 ?>
 <tr>
-<td bgcolor="<?php echo $bgcolor?>" align="center"><a href= "remove.php?detail=<?php  echo "forum".",".$rows['id'];?>" onClick="msg()"><img src="images/rm.jpg" alt="" border=3 height=30 width=30></img></a></td>
-<td bgcolor="<?php echo $bgcolor?>" align="center"><a href="view_topic.php?id=<?php echo $rows['id']; ?>" target="_blank" ><strong><?php echo $rows['topic']; ?></strong></a><BR></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>" width ="50%" height="100%"><?php echo $rows['user'];?></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['view']; ?></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['reply']; ?></td>
-<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['datetime']; ?></td>
+<td bgcolor="<?php echo $bgcolor?>" align="center"><a href= "remove.php?detail=<?php  echo "part".",".$rows['partID'];?>" onClick="msg()"><img src="images/rm.jpg" alt="" border=3 height=30 width=30></img></a></td>
+<td bgcolor="<?php echo $bgcolor?>" align="center"><?php echo $rows['category']; ?></strong></a><BR></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['subCategory'];?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['quantity']; ?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['description']; ?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['newOrUsed']; ?></td>
+<td align="center" bgcolor="<?php echo $bgcolor	?>"><?php echo $rows['price']; ?></td>
 </tr>
  
 <?php
@@ -243,7 +248,7 @@ mysqli_close($conn);
       <label for="textfield"></label>
       <input name="textfield" type="text" class="searchtext" id="textfield" required>
       <input name="button" type="submit" class="searchbtton" id="button" value="SEARCH">
-  <strong>.....SEARCH TOPIC.....</strong></p>
+  <strong>.....SEARCH PART.....</strong></p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
   </form>

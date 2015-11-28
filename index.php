@@ -226,9 +226,9 @@
      <div id="apDiv15">
      	<img src="images/Index/search.png" width="280" height="50" />
         <div id="apDiv17">
-        	<input type="text" name="keyword" id="searchtext" value="Ex:Air Filters/Bumpers"
-            onfocus="if(this.value == 'Ex:Air Filters/Bumpers') { this.value = ''; }" 
-      		onblur="if (this.value == '') {this.value = 'Ex:Air Filters/Bumpers'; }" required/>
+        	<input type="text" name="keyword" id="searchtext" value="ex:air filters/bumpers"
+            onfocus="if(this.value == 'ex:air filters/bumpers') { this.value = '';}" 
+      		onblur="if (this.value == '') {this.value = 'ex:air filters/bumpers'; }" required/>
         </div>
      </div>
      <div id="apDiv16"><input type="submit" id="search" name="search" value=""
@@ -278,7 +278,7 @@ Category : <?php echo $row['category'];?><br>
 SubCategory : <?php echo $row['subCategory'];?><br>
 <div class="remain"> <?php echo $row['quantity'];?> more</div>
 <div class="price"> <?php echo $row['price'];?> LKR</div>
-<input type="number" class="partListContain"  id="quantity" min="1" max="<?php echo $row['quantity'];?>" value="1" onblur="validateQuantity('quantity')" required/>
+<input type="number" class="partListContain" name="quantity"  id="quantity" min="1" max="<?php echo $row['quantity'];?>" value="1" onblur="validateQuantity('quantity')" required/>
 <input type="submit" class="partListContain" name="addToCart" value="Add to Cart" />
 <input type="text" class="partListContain" name="partID" value="<?php echo $row['partID'];?>" hidden="true"/>
 </form>
@@ -290,17 +290,24 @@ SubCategory : <?php echo $row['subCategory'];?><br>
 		}
 		
 		if(isset($_POST["search"])){
-			$keyword=$_POST['keyword'];
-			$quary="SELECT * FROM part WHERE subCategory='".$keyword."'";
-				$result = $conn->query($quary);
-				$count=mysqli_num_rows($result);
+			$keyword =stripslashes($_POST['keyword']);
+			$keyword = str_replace(' ','',$keyword);
+			//$keyword=$_POST['keyword'];
+			$quary="SELECT * FROM part";
+			$result = $conn->query($quary);
+
+			//$quary="SELECT * FROM part WHERE subCategory='".$keyword."'";
 				
-				if( $count< 1){
-					echo "<div class='partListTitle'>Not Results Found For #$keyword</div>";
-				}else{
-					echo "<div class='partListTitle'>$count Results Found For #$keyword</div>";
+				//$count=mysqli_num_rows($result);
+				
+				$count=0;
 				while($row = $result->fetch_assoc()){
-				
+					$string = $row["subCategory"];
+			   		$string = str_replace(' ','',$string);
+			   		$string = strtolower($string);
+			   		
+			   		if(strpos($string,strtolower($keyword))>-1){
+			   			$count =$count+1;
 	  		
 ?>
 <div class="partList">
@@ -319,10 +326,13 @@ SubCategory : <?php echo $row['subCategory'];?><br>
 <?php
 				}//closing while loop
 			}
+			if( $count< 1){
+				echo "<div class='partListTitle'>Not Results Found For #$keyword</div>";
+			}else{
+				echo "<div class='partListTitle'>$count Results Found For #$keyword</div>";
+			}
 		}
-		
-			
-		}
+	}
 	
 ?>
 

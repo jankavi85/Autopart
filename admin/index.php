@@ -1,6 +1,4 @@
-<?php include "sessioncheck.php";
-	include "header.php";
-?>
+<?php 	include "header.php";?>
 
 <style type="text/css">
 
@@ -132,7 +130,7 @@ h3{
 <h3 align="left"><img src="images/j.png" alt="expand" style="width:30px;height:30px;"> Forum</h3>
 </DIV>
 <DIV class="FAQ" onClick="toggle('show4')">
-<h3 align="left"><img src="images/j.png" alt="expand" style="width:30px;height:30px;">Jobs</h3>
+<h3 align="left"><img src="images/j.png" alt="expand" style="width:30px;height:30px;">Others</h3>
  </DIV>
 
 </div>
@@ -144,7 +142,7 @@ h3{
         <td width="25%" height="100" align="center"><a href="user.php"><img src="images/1.jpg" height="100" width="100"></img></a></td>
              </tr>
         <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="user.php"><strong>User</strong></a></td>
+         <td width="25%" height="50" align="center" class="tablefont"><a href="user.php"><h1>Remove User</h1></a></td>
          </tr>
     </table>
 </div>
@@ -152,10 +150,10 @@ h3{
  <p>&nbsp;</p>
 <table width="500" align="center" cellspacing="20" >
       	  <tr >
-        <td width="25%" height="100" align="center"><a href="cmremove.php"><img src="images/1.jpg" height="100" width="100"></img></a></td>
+        <td width="25%" height="100" align="center"><a href="part.php"><img src="images/4.jpg" height="100" width="100"></img></a></td>
         </tr>
         <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="cmremove.php"><strong>Parts</strong></a></td>
+         <td width="25%" height="50" align="center" class="tablefont"><a href="part.php"><h1>Remove Parts</h1></a></td>
          </tr>
     </table>
 
@@ -168,19 +166,13 @@ h3{
         <td width="25%" height="100" align="center"><a href="forumremove.php"><img src="images/4.jpg" height="100" width="100"></img></a></td>
         </tr>
         <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="forumremove.php"><strong>Forum</strong></a></td>
+         <td width="25%" height="50" align="center" class="tablefont"><a href="forumremove.php"><h1>Remove Forum</h1></a></td>
          </tr>
     </table>
 </div>
 <div id="show4" class="FAA">
  <p>&nbsp;</p>
 <table width="500" align="center" cellspacing="20" >
-      	  <tr >
-        <td width="25%" height="100" align="center"><a href="jobremove.php"><img src="images/4.jpg" height="100" width="100"></img></a></td>
-        </tr>
-        <tr>
-         <td width="25%" height="50" align="center" class="tablefont"><a href="jobremove.php"><strong>Jobs</strong></a></td>
-         </tr>
     </table>
 </div>
 

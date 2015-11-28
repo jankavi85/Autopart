@@ -1,0 +1,49 @@
+
+#border {
+    border-radius: 6px;
+    border-style: ridge;
+    border-width: 1px;
+    margin-bottom: 2%;
+}
+#p1 {
+    color: blue;
+    font-size: 21px;
+    height: 12px;
+    margin-left: 8%;
+    margin-top: 13px;
+}
+#p2 {
+    color: appworkspace;
+    font-size: 18px;
+    height: auto;
+    margin-left: 8%;
+    margin-top: 10px;
+}
+#p3 {
+    color: black;
+    font-size: 18px;
+    height: 11px;
+    margin-left: 8%;
+    margin-top: 12px;
+}
+#pr {
+    color: red;
+    font-size: 20px;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+hr {
+    color: #fbf9fb;
+    margin-left: 3%;
+    width: 94%;
+}
+.rowmy {
+    display: flex;
+}
+.right {
+    margin-left: 4%;
+}
+#bordermy {
+    margin-left: 10%;
+    margin-top: 5%;
+}

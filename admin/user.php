@@ -1,5 +1,4 @@
-<?php include "header.php"; 
-include "sessioncheck.php";?>
+<?php include "header.php"; ?>
 
 <style type="text/css">
 #apDiv1 {
@@ -91,7 +90,7 @@ include '../database/dbconnect.php';
 $found =0;
 $sql = "SELECT * FROM user";
 $result = mysqli_query($conn,$sql);
-$word =mysql_real_escape_string(stripslashes($_POST['textfield']));
+$word =stripslashes($_POST['textfield']);
 $word = str_replace(' ','',$word);
 if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
@@ -125,8 +124,8 @@ if (mysqli_num_rows($result) > 0) {
 <td><table width="100%" height="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#F8F7F1">
 <tr>
 <td width="100%" bgcolor="#F8F7F1"><table><tr>
-<td width="10%" bgcolor="#F8F7F1" align='left'><img src="\autopart\images\face.png" alt="" border=3 height=30 width=30></img></td>
-<td width="70%"bgcolor="#F8F7F1" align="left"><a href= "/autopart/admin/profile.php?user=<?php echo $row["userID"];?>" target="_blank" >View Profile</a></td>
+<td width="10%" bgcolor="#F8F7F1" align='left'><img src="../images/face.png" alt="" border=3 height=30 width=30></img></td>
+<td width="70%"bgcolor="#F8F7F1" align="left"><a href= "../admin/profile.php?user=<?php echo $row["userID"];?>" target="_blank" >View Profile</a></td>
 </tr></table></td>
 </tr>
 <tr>

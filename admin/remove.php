@@ -10,7 +10,7 @@ if($detailarray[0]=='user')
 	$sql2="DELETE FROM user WHERE userID=$detailarray[1]";
 	$result2 = mysqli_query($conn, $sql2);
 	
-	header("location:/autopart/admin/user.php");
+	header("location:user.php");
 }
 else if($detailarray[0]=='forum')
 {
@@ -20,8 +20,16 @@ else if($detailarray[0]=='forum')
 	$sql2="DELETE FROM fquestions WHERE id=$detailarray[1]";
 	$result2 = mysqli_query($conn, $sql2);
 	
-	header("location:/autopart/admin/forumremove.php");
+	header("location:forumremove.php");
 }
+else if($detailarray[0]=='part')
+{
+	$sql1="DELETE FROM part WHERE partID=$detailarray[1]";
+	$result1 = mysqli_query($conn, $sql1);
+	
+	header("location:part.php");
+}
+
 
 
 mysqli_close($conn);
